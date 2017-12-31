@@ -1,0 +1,24 @@
+{
+  "name": "groceries",
+  "version": "0.1.0",
+  "description": "Family groceries web app",
+  "main": "index.js",
+  "scripts": {
+    "watch": "nodemon ./start.js --ignore public/",
+    "start": "npm run watch"
+  },
+  "keywords": ["groceries", "javascript"],
+  "author": "Brian Zelip, http://zelip.me",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "connect-mongo": "^2.0.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.0-rc0",
+    "pug": "^2.0.0-rc.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.7"
+  }
+}
