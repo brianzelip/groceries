@@ -6,4 +6,6 @@ router.get('/', itemController.landingPage);
 
 router.get('/groceries/:item', itemController.getItem);
 
+router.post('/add', itemController.postAdd);
+
 module.exports = router;
