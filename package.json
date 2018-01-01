@@ -1,16 +1,13 @@
 {
   "name": "groceries",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Family groceries web app",
   "main": "index.js",
   "scripts": {
     "watch": "nodemon ./start.js --ignore public/",
     "start": "npm run watch"
   },
-  "keywords": [
-    "groceries",
-    "javascript"
-  ],
+  "keywords": ["groceries", "javascript"],
   "author": "Brian Zelip, http://zelip.me",
   "license": "MIT",
   "dependencies": {
