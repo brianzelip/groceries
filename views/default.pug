@@ -1,0 +1,10 @@
+include mixins/_head
+
+doctype html
+html
+  +head()
+  body
+    .container
+      h1= new Date()
+      
+      block content
