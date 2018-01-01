@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const groceryItemController = require('../controllers/groceryItemController');
+const itemController = require('../controllers/itemController');
 
-router.get('/', groceryItemController.landingPage);
+router.get('/', itemController.landingPage);
+
+router.get('/groceries/:item', itemController.getItem);
 
 module.exports = router;
