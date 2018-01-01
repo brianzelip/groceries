@@ -12,7 +12,7 @@ mongoose.connection.on('error', err => {
 
 // import all of our models (data schemas)
 // this is also known as a "singleton" - where express allows you to just require it once at the beginning, and all subsequent files get it from here.
-// require('./models/Store');
+require('./models/GroceryItem');
 
 // Start the app!
 const app = require('./app');
