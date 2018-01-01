@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+const Item = mongoose.model('Item');
+
 exports.landingPage = (req, res) => {
   res.render('index');
 };
@@ -8,4 +11,10 @@ exports.getItem = (req, res) => {
 
 exports.postAdd = (req, res) => {
   res.json(req.body);
+};
+
+exports.createItem = async (req, res) => {
+  const item = new Item(req.body);
+  await item.save();
+  res.redirect('/');
 };
