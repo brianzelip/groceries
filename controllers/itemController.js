@@ -5,3 +5,7 @@ exports.landingPage = (req, res) => {
 exports.getItem = (req, res) => {
   res.send(`passed param: ${req.params.item}`);
 };
+
+exports.postAdd = (req, res) => {
+  res.json(req.body);
+};
