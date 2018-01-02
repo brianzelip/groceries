@@ -20,7 +20,7 @@ exports.createItem = async (req, res) => {
     'success',
     `Successfully added <strong>${item.name}${
       item.variant ? `-${item.variant}` : ``
-    } to the list!</strong>`
+    }</strong> to the list!`
   );
   res.redirect('/');
 };
