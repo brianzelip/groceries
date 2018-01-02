@@ -21,7 +21,7 @@ itemSchema.pre('save', function(next) {
     next(); // go to next middleware or route function
     return; // terminate this function
   }
-  this.slug = slug(this.name);
+  this.slug = slug(`${this.name} ${this.variant}`);
   next();
   // TODO make more resiliant so slugs are unique (in case two items have the same name)
 }); // needs to be a long-form function because we need `this`, so arrow func won't do
