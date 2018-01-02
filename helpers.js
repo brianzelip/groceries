@@ -10,17 +10,10 @@ exports.dump = obj => JSON.stringify(obj, null, 2);
 
 // Some details about the site
 exports.site = {
+  name: 'groceries',
   css: '/css/groceries.min.css',
   author: 'Brian Zelip',
   authorUri: 'http://zelip.me',
   description: `Family groceries web app.`,
   keywords: ['Node.js', 'Express.js', 'MongoDB', 'groceries']
 };
-
-exports.menu = [
-  { slug: '/stores', title: 'Stores', icon: 'store' },
-  { slug: '/tags', title: 'Tags', icon: 'tag' },
-  { slug: '/top', title: 'Top', icon: 'top' },
-  { slug: '/add', title: 'Add', icon: 'add' },
-  { slug: '/map', title: 'Map', icon: 'map' }
-];
