@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 // have to tell mongoose that we're using ES6 async/await
 mongoose.Promise = global.Promise;
-const slug = require('slug');
+const slug = require('slugs');
 
 const itemSchema = new mongoose.Schema({
   name: {
@@ -15,5 +15,15 @@ const itemSchema = new mongoose.Schema({
   area: Number,
   slug: String
 });
+
+itemSchema.pre('save', function(next) {
+  if (!this.isModified('name')) {
+    next(); // go to next middleware or route function
+    return; // terminate this function
+  }
+  this.slug = slug(this.name);
+  next();
+  // TODO make more resiliant so slugs are unique (in case two stores have the same name)
+}); // needs to be a long-form function because we need `this`, so arrow func won't do
 
 module.exports = mongoose.model('Item', itemSchema);
