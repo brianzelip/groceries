@@ -18,9 +18,9 @@ exports.createItem = async (req, res) => {
   await item.save();
   req.flash(
     'success',
-    `Successfully created <strong>${item.name}${
+    `Successfully added <strong>${item.name}${
       item.variant ? `-${item.variant}` : ``
-    }!</strong>`
+    } to the list!</strong>`
   );
   res.redirect('/');
 };
