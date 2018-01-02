@@ -1,11 +1,9 @@
-include includes/head
-
 doctype html
 html
-  +head()
+  include includes/head
   body
     .container
-      h1= new Date()
+      h1 Groceries
       
       block messages
         if locals.flashes
