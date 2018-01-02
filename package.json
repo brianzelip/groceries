@@ -5,7 +5,10 @@
   "main": "start.js",
   "scripts": {
     "watch": "nodemon ./start.js --ignore public/",
-    "start": "npm run watch"
+    "css":
+      "postcss -u postcss-custom-properties postcss-color-function postcss-import autoprefixer cssnano -o public/css/groceries.min.css public/css/groceries.css --no-map --watch",
+    "start":
+      "concurrently \"npm run watch\" \"npm run css\" --names \"😈,📦\" --prefix name"
   },
   "keywords": ["groceries", "javascript"],
   "repository": {
