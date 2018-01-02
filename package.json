@@ -15,9 +15,11 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
     "connect-mongo": "^2.0.0",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "mongoose": "^5.0.0-rc0",
     "pug": "^2.0.0-rc.4",
     "slugs": "^0.1.3"
