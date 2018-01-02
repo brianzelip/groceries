@@ -9,8 +9,13 @@ const fs = require('fs');
 exports.dump = obj => JSON.stringify(obj, null, 2);
 
 // Some details about the site
-exports.siteDescription = `Family groceries web app.`;
-exports.siteKeywords = ['Node.js', 'Express.js', 'MongoDB', 'groceries'];
+exports.site = {
+  css: '/css/groceries.css',
+  author: 'Brian Zelip',
+  authorUri: 'http://zelip.me',
+  description: `Family groceries web app.`,
+  keywords: ['Node.js', 'Express.js', 'MongoDB', 'groceries']
+};
 
 exports.menu = [
   { slug: '/stores', title: 'Stores', icon: 'store' },
