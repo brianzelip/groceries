@@ -7,4 +7,16 @@ html
     .container
       h1= new Date()
       
+      block messages
+      if locals.flashes
+        .inner
+          .flash-messages
+            - const categories = Object.keys(locals.flashes)
+            each category in categories
+              each message in flashes[category]
+                .flash(class=`flash--${category}`)
+                  p.flash__text!= message
+                  //- the `!=` above tells pug to parse any html inside the message, as opposed to treating html like a string the same as the message
+                  button.flash__remove(onClick="this.parentElement.remove()") &times;
+
       block content
