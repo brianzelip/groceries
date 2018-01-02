@@ -3,6 +3,8 @@ mixin list()
   form
     ol.list-reset
       each item in items
-        li
-          input(type="checkbox" id=`${item.slug}` name=`${item.slug}`)
-          label(for=`${item.slug}`)= item.slug
+        li.item
+          input(class="item__hidden-input" type="checkbox" id=`${item.slug}` name=`${item.slug}`)
+          label(for=`${item.slug}` class="item__label")
+            span(class="item__checkbox")
+            span(class="item__text")= item.slug
