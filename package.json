@@ -7,10 +7,11 @@
     "watch": "nodemon ./start.js --ignore public/",
     "start": "npm run watch"
   },
-  "keywords": [
-    "groceries",
-    "javascript"
-  ],
+  "keywords": ["groceries", "javascript"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brianzelip/groceries.git"
+  },
   "author": "Brian Zelip, http://zelip.me",
   "license": "MIT",
   "dependencies": {
