@@ -1,4 +1,8 @@
 mixin list()
 
-  each item in items
-    p= item.slug
+  form
+    ol.list-reset
+      each item in items
+        li
+          input(type="checkbox" id=`${item.slug}` name=`${item.slug}`)
+          label(for=`${item.slug}`)= item.slug
