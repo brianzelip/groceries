@@ -1,6 +1,163 @@
 @charset "UTF-8";
 /*!
-    groceries.css - styles for a family groceries web app
+    groceries.css
+      Styles for a family groceries web app,
+      by Brian Zelip, http://zelip.me and Basscss
  */
 
-@import 'basscss@7.1.1.css';
+@import 'basscss@7.1.1.min.css';
+
+/*!
+  Box Sizing via http://tachyons.io/docs/layout/box-sizing/
+*/
+html,
+body,
+div,
+article,
+section,
+main,
+footer,
+header,
+form,
+fieldset,
+pre,
+code,
+p,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+textarea,
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='tel'],
+input[type='text'],
+input[type='url'],
+.border-box {
+  box-sizing: border-box;
+}
+
+/*! Start custom project styles  */
+
+html,
+body,
+.vh100 {
+  min-height: 100vh;
+}
+
+.bg-light-gray {
+  background-color: #efefef;
+}
+
+.shadow {
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+}
+
+.h0 {
+  font-size: 2.7rem;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-self-start {
+  align-self: flex-start;
+}
+
+.px0 {
+  padding-right: 0;
+  padding-left: 0;
+}
+.px1 {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.py1 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.px2 {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.py2 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+input[type='date'],
+input[type='datetime-local'],
+input[type='datetime'],
+input[type='email'],
+input[type='month'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='time'],
+input[type='url'],
+input[type='week'] {
+  height: auto;
+}
+
+.source-option input {
+  display: none;
+}
+
+.source-option input + label {
+  background: #e6e6e6;
+  padding: 0.5rem 1rem;
+}
+
+.source-option input:checked + label {
+  background: #bada55;
+}
+
+/* flashes */
+:root {
+  --color-green: #2ecc40;
+  --color-red: #ff4136;
+  --state-success: var(--color-green);
+  --state-error: var(--color-red);
+
+  --bg-color-success: color(var(--state-success) tint(75%));
+  --color-success: color(var(--state-success) lightness(25%));
+  --border-color-success: color(var(--bg-color-success) shade(25%));
+
+  --bg-color-error: color(var(--state-error) tint(75%));
+  --color-error: color(var(--state-error) lightness(25%));
+  --border-color-error: color(var(--bg-color-error) shade(25%));
+}
+
+.flash {
+  padding: 1rem;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+}
+
+/* Success */
+.flash--success {
+  background-color: var(--bg-color-success);
+  color: var(--color-success);
+  border-color: var(--border-color-success);
+}
+
+/* Error */
+.flash--error {
+  background-color: var(--bg-color-error);
+  color: var(--color-error);
+  border-color: var(--border-color-error);
+}
+
+.cursor {
+  cursor: default;
+}
