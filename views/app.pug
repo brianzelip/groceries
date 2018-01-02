@@ -1,0 +1,11 @@
+extends default
+
+include mixins/list
+
+block content
+
+  main#app.flex.border
+    #list.flex-auto
+      +list
+    #output.flex-auto
+      h2 output
