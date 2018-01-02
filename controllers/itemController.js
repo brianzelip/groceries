@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 const Item = mongoose.model('Item');
 
-exports.landingPage = (req, res) => {
-  res.render('index');
+exports.app = async (req, res) => {
+  // 1 .query the database for a list of all items
+  const items = await Item.find();
+  res.render('app', { items });
 };
 
 exports.getItem = (req, res) => {
