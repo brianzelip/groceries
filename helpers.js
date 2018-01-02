@@ -10,7 +10,7 @@ exports.dump = obj => JSON.stringify(obj, null, 2);
 
 // Some details about the site
 exports.site = {
-  css: '/css/groceries.css',
+  css: '/css/groceries.min.css',
   author: 'Brian Zelip',
   authorUri: 'http://zelip.me',
   description: `Family groceries web app.`,
