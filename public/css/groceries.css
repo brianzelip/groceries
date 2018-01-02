@@ -161,3 +161,62 @@ input[type='week'] {
 .cursor {
   cursor: default;
 }
+
+.item {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #ecf0f1;
+  position: relative;
+}
+.item:last-child {
+  border: 0;
+}
+.item__hidden-input {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  visibility: hidden;
+  opacity: 0;
+}
+.item__label {
+  font-size: 1.25rem;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.item__checkbox {
+  display: flex;
+  align-self: center;
+  position: relative;
+  height: 1.25rem;
+  width: 1.25rem;
+  margin: 0 1.25rem;
+  border: 2px solid #3498db;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.item__text {
+  display: flex;
+  align-self: center;
+  position: relative;
+  cursor: pointer;
+  padding: 1.25rem;
+  border-left: 1px solid #ecf0f1;
+}
+.item__hidden-input:checked + .item__label {
+  background-color: #f9f9f9;
+}
+.item__hidden-input:checked + .item__label .item__checkbox {
+  background-color: #3498db;
+}
+.item__hidden-input:checked + .item__label .item__checkbox:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 30%;
+  width: 0.4rem;
+  height: 0.8rem;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
