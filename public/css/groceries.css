@@ -174,12 +174,16 @@ input[type='week'] {
   --cbWidth: 0.2rem;
   --cbTop: 1px;
   --cbLeft: 31.5%;
+}
 
-  --sm-checkboxSpacing: 1.25rem;
-  --sm-cbHeight: 0.8rem;
-  --sm-cbWidth: 0.4rem;
-  --sm-cbTop: 0;
-  --sm-cbLeft: 30%;
+@media (min-width: 40em) {
+  :root {
+    --checkboxSpacing: 1.25rem;
+    --cbHeight: 0.8rem;
+    --cbWidth: 0.4rem;
+    --cbTop: 0;
+    --cbLeft: 30%;
+  }
 }
 
 .flash {
@@ -273,24 +277,4 @@ input[type='week'] {
   transform: rotate(45deg);
   border: solid #fff;
   border-width: 0 2px 2px 0;
-}
-
-@media (min-width: 40em) {
-  .item__label {
-    font-size: var(--sm-checkboxSpacing);
-  }
-  .item__checkbox {
-    height: var(--sm-checkboxSpacing);
-    width: var(--sm-checkboxSpacing);
-    margin: 0 var(--sm-checkboxSpacing);
-  }
-  .item__text {
-    padding: var(--sm-checkboxSpacing);
-  }
-  .item__hidden-input:checked + .item__label .item__checkbox:after {
-    height: var(--sm-cbHeight);
-    width: var(--sm-cbWidth);
-    top: var(--sm-cbTop);
-    left: var(--sm-cbLeft);
-  }
 }
