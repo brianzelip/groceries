@@ -202,47 +202,7 @@ input[type='week'] {
   color: var(--blue);
 }
 
-:root {
-  /* checkbox */
-  --height: 7px;
-  --width: 2px;
-  --top: 0;
-  --left: 30%;
-
-  --item__label-fs: 1rem;
-  --sm-item__label-fs: calc(var(--item__label-fs) + 0.25rem);
-
-  --item__checkbox-length: calc(var(--item__label-fs) * 0.625);
-  --sm-item__checkbox-length: calc(var(--item__label-fs) * 0.75);
-
-  --checkmark-height: 0.375rem;
-  --checkmark-width: 0.125rem;
-  --sm-checkmark-height: 8px;
-  --sm-checkmark-width: 2.75px;
-
-  --checkmark-top: 0.015625rem;
-  --sm-checkmark-top: 0.015625rem;
-
-  --checkmark-left: 30%;
-  --sm-checkmark-left: 30%;
-
-  --cbSpacing: 1rem;
-  --cbPadding: 0.5rem;
-  --cbMargin: 0 var(--cbSpacing);
-  --cbHeight: 0.6rem;
-  --cbWidth: 0.2rem;
-  --cbTop: 1px;
-  --cbLeft: 35%;
-  --sm-cbSpacing: 1.25rem;
-  --sm-cbPadding: 0.75rem;
-  --sm-cbMargin: 0 var(--sm-cbSpacing);
-  /* --item__text-border-left: 1px solid #ecf0f1; */
-  --sm-cbHeight: 0.6rem;
-  --sm-cbWidth: 0.2rem;
-  --sm-cbTop: 0;
-  --sm-cbLeft: 30%;
-}
-
+/* checkboxes */
 .item {
   position: relative;
   margin: 0;
@@ -263,24 +223,24 @@ input[type='week'] {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  font-size: var(--item__label-fs);
+  font-size: 1rem;
 }
 .item__checkbox {
   position: relative;
   display: flex;
   align-self: center;
-  height: var(--item__checkbox-length);
-  width: var(--item__checkbox-length);
-  margin: var(--cbMargin);
+  height: 10px;
+  width: 10px;
+  margin: 1rem;
   border: 2px solid #3498db;
-  border-radius: 2px;
+  border-radius: 1px;
   cursor: default;
 }
 .item__text {
   position: relative;
   display: flex;
   align-self: center;
-  padding: var(--cbPadding) 0;
+  padding: 0.5rem 0;
   cursor: default;
 }
 .item__hidden-input:checked + .item__label {
@@ -293,30 +253,30 @@ input[type='week'] {
   content: '';
   position: absolute;
   display: block;
-  height: var(--checkmark-height);
-  width: var(--checkmark-width);
-  top: var(--checkmark-top);
-  left: var(--checkmark-left);
+  height: 6px;
+  width: 2px;
+  top: 0.25px;
+  left: 30%;
   transform: rotate(45deg);
   border: solid #fff;
   border-width: 0 2px 2px 0;
 }
 @media (min-width: 40em) {
   .item__label {
-    font-size: var(--sm-item__label-fs);
+    font-size: 1.25rem;
   }
   .item__checkbox {
-    height: var(--sm-item__checkbox-length);
-    width: var(--sm-item__checkbox-length);
-    margin: var(--sm-cbMargin);
+    height: 12px;
+    width: 12px;
+    margin: 1.25rem;
+    border-radius: 2px;
   }
   .item__text {
-    padding: var(--sm-cbPadding) 0;
+    padding: 0.75rem 0;
   }
   .item__hidden-input:checked + .item__label .item__checkbox:after {
-    height: var(--sm-checkmark-height);
-    width: var(--sm-checkmark-width);
-    top: var(--sm-checkmark-top);
-    left: var(--sm-cbLeft);
+    height: 8px;
+    width: 2.75px;
+    left: 32%;
   }
 }
