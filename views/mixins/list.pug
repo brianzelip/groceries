@@ -1,3 +1,4 @@
+include increment
 mixin list()
 
   form
@@ -8,3 +9,5 @@ mixin list()
           label(for=`${item.slug}` class="item__label")
             span(class="item__checkbox")
             span(class="item__text blue")= (item.name && item.variant ? `${item.name} ${item.variant}` : `${item.name}`)
+            .increment-wrapper
+              +increment          
