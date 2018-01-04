@@ -172,9 +172,9 @@ input[type='week'] {
   --cbSpacing: 1rem;
   --cbPadding: 0.5rem;
   --cbMargin: 0 var(--cbSpacing);
-  --cbHeight: 0.5rem;
+  --cbHeight: 0.6rem;
   --cbWidth: 0.2rem;
-  --cbTop: 0.1rem;
+  --cbTop: 1px;
   --cbLeft: 35%;
   --sm-cbSpacing: 1.25rem;
   --sm-cbPadding: 0.75rem;
