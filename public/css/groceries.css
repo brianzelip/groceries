@@ -243,7 +243,8 @@ input[type='week'] {
   padding: 0.5rem 0;
   cursor: default;
 }
-.item__hidden-input:checked + .item__label {
+.item__hidden-input:checked + .item__label,
+.item__hidden-input:checked ~ div {
   background-color: #f9f9f9;
 }
 .item__hidden-input:checked + .item__label .item__checkbox {
