@@ -4,10 +4,10 @@ mixin list()
   form
     ol.list-reset.mb0
       each item in items
-        li.item
+        li.item.flex
           input(class="item__hidden-input" type="checkbox" id=`${item.slug}` name=`${item.slug}`)
           label(for=`${item.slug}` class="item__label")
             span(class="item__checkbox")
             span(class="item__text blue")= (item.name && item.variant ? `${item.name} ${item.variant}` : `${item.name}`)
-            .increment-wrapper
-              +increment          
+          .increment-wrapper
+            +increment          
