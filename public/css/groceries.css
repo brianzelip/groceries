@@ -281,3 +281,23 @@ input[type='week'] {
     left: 32%;
   }
 }
+
+/* incrementer */
+.control {
+  display: flex;
+  /* padding: 0.75rem 0; */
+}
+
+.control__minus,
+.control__plus {
+  display: flex;
+  align-items: center;
+  background-color: var(--blue);
+  color: white;
+  padding: 0 0.25rem;
+}
+.control__display {
+  width: 4rem;
+  border: 1px solid var(--blue);
+  text-align: center;
+}
