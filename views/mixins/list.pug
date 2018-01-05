@@ -1,4 +1,4 @@
-include increment
+include copiesBadge
 mixin list()
 
   form
@@ -9,7 +9,10 @@ mixin list()
           label(for=`${item.slug}` class="item__label")
             span(class="item__checkbox")
             span(class="item__text blue")= (item.name && item.variant ? `${item.name} ${item.variant}` : `${item.name}`)
-          .increment-wrapper.flex-auto.flex.flex-center.px2
-            +increment
+          .copiesBadge-wrapper.flex-auto.flex.flex-center.px2
+            - let [num, max] = [2,5];
+              while num <= max
+                +copiesBadge(num)
+                - num++
 
   script(src="js/numberInput.js")
