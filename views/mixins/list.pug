@@ -9,7 +9,7 @@ mixin list()
           label(for=`${item.slug}` class="item__label")
             span(class="item__checkbox")
             span(class="item__text blue")= (item.name && item.variant ? `${item.name} ${item.variant}` : `${item.name}`)
-          .increment-wrapper.flex-auto
+          .increment-wrapper.flex-auto.flex.flex-center.px2
             +increment
 
   script(src="js/numberInput.js")
