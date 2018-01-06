@@ -1,10 +1,10 @@
 mixin itemQtySelector(item)
   //- pass this mixin: 1. the name of parent grocery item, and 2. num
-  .itemQtySelector
+  .item__qtySelector
     span.mr1.mono.red qty:
     - let [num, max] = [2,5];
       while num <= max
-        .itemQtySelector__numWrapper
-          input(type="radio" name=`QB${num}` value=`${num}`).itemQtySelector__numInput
-          label(for=`QB${num}`).itemQtySelector__numLabel= num
+        .item__qtySelector-numWrapper
+          input(type="radio" name=`QB${num}` value=`${num}`).item__qtySelector-numInput
+          label(for=`QB${num}`).item__qtySelector-numLabel= num
         - num++

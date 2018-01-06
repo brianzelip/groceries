@@ -296,24 +296,24 @@ input[type='week'] {
   font-family: monospace;
 }
 
-.itemQtySelector {
+.item__qtySelector {
   flex: 1 1 auto;
   display: none;
   align-items: center;
   padding: 0 1rem;
 }
 
-.item__hidden-input:checked ~ .itemQtySelector {
+.item__hidden-input:checked ~ .item__qtySelector {
   display: flex;
 }
 
-.itemQtySelector__numWrapper {
+.item__qtySelector-numWrapper {
   position: relative;
   width: 1rem;
   margin: 0 0.25rem;
 }
 
-.itemQtySelector__numInput {
+.item__qtySelector-numInput {
   position: absolute;
   top: 0;
   left: 0;
@@ -325,7 +325,7 @@ input[type='week'] {
   cursor: pointer;
 }
 
-.itemQtySelector__numLabel {
+.item__qtySelector-numLabel {
   text-align: center;
   color: var(--red-muted);
   display: flex;
@@ -334,7 +334,7 @@ input[type='week'] {
   font-family: monospace;
   font-size: 16px;
 }
-.itemQtySelector__numInput:hover + .itemQtySelector__numLabel,
-.itemQtySelector__numInput:checked + .itemQtySelector__numLabel {
+.item__qtySelector-numInput:hover + .item__qtySelector-numLabel,
+.item__qtySelector-numInput:checked + .item__qtySelector-numLabel {
   color: var(--red);
 }
