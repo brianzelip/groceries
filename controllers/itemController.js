@@ -45,9 +45,14 @@ exports.postSubmit = (req, res) => {
     return slug.replace(/-/g, ' ');
   }
 
+  function getQty(slug) {
+    return req.body.hasOwnProperty(`${slug}-qty`) ? req.body[`${slug}-qty`] : 1;
+  }
+
   selectedItems.forEach(item => {
     const itemObj = {};
     itemObj.name = rmHyphens(item);
+    itemObj.qty = getQty(item);
     outputObj.push(itemObj);
   });
 
