@@ -5,6 +5,6 @@ mixin itemQtySelector(item)
     - let [num, max] = [2,5];
       while num <= max
         .item__qtySelector-numWrapper
-          input(type="radio" name=`${item.slug}` id=`${item.slug}-${num}` value=`${num}`).item__qtySelector-numInput
+          input(type="radio" name=`${item.slug}-qty` id=`${item.slug}-${num}` value=`${num}`).item__qtySelector-numInput
           label(for=`${item.slug}-${num}`).item__qtySelector-numLabel= num
         - num++
