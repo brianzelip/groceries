@@ -1,5 +1,5 @@
 mixin itemCheckboxAndText(item)
-  input(class="item__hidden-input" type="checkbox" id=`${item.slug}` name=`${item.slug}` value=`${(item.name && item.variant ? `${item.name} ${item.variant}` : `${item.name}`)}`)
+  input(class="item__hidden-input" type="checkbox" id=`${item.slug}` name="items" value=`${(item.name && item.variant ? `${item.name} ${item.variant}` : `${item.name}`)}`)
   label(for=`${item.slug}` class="item__label")
     span(class="item__checkbox")
     span(class="item__text blue")= (item.name && item.variant ? `${item.name} ${item.variant}` : `${item.name}`)
