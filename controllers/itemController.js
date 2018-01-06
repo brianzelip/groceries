@@ -29,29 +29,41 @@ exports.createItem = async (req, res) => {
 
 exports.postSubmit = (req, res) => {
   const selectedItems = req.body.items;
+  const slugs = Object;
 
   // pass an array of objects to the rendered GroceryList view,
   // where each object in the array represents an item selected by the user
   // with the following data per selected item:
-  // 1. item name
-  // 2. the number of items to get from the store
-  // [once the above two steps are complete, then work on the next two steps]
-  // 3. the store to get the item at
-  // 4. the area where the item is located in the store
+  // 1. COMPLETE item name
+  // 2. COMPLETE the number of items to get from the store
+  // 3. get the item's area from the database
+  // ?. the store to get the item at
+  // ?. the area where the item is located in the store
 
   const outputObj = [];
 
-  function rmHyphens(slug) {
-    return slug.replace(/-/g, ' ');
+  function getName(str) {
+    return str.replace(/-/g, ' ').split('+')[0];
   }
 
-  function getQty(slug) {
-    return req.body.hasOwnProperty(`${slug}-qty`) ? req.body[`${slug}-qty`] : 1;
+  function getSlug(str) {
+    return str.split('+')[0];
+  }
+
+  function getArea(str) {
+    return str.split('+')[1];
+  }
+
+  function getQty(str) {
+    return req.body.hasOwnProperty(`${getSlug(str)}-qty`)
+      ? req.body[`${getSlug(str)}-qty`]
+      : 1;
   }
 
   selectedItems.forEach(item => {
     const itemObj = {};
-    itemObj.name = rmHyphens(item);
+    itemObj.name = getName(item);
+    itemObj.area = getArea(item);
     itemObj.qty = getQty(item);
     outputObj.push(itemObj);
   });
