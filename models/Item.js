@@ -12,6 +12,7 @@ const itemSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
+  store: String,
   area: Number,
   slug: String
 });

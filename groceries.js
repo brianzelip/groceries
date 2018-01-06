@@ -74,3 +74,12 @@ let tjs = [
     area: 7
   }
 ];
+
+let outputExample = [
+  {
+    name: 'Green pepper',
+    qty: 2,
+    store: "Trader Joe's",
+    area: 1
+  }
+];

@@ -153,6 +153,8 @@ input[type='week'] {
 
 :root {
   --blue: #3498db;
+  --red: #ca34db;
+  --red-muted: #edbbf2;
 
   /* flashes */
   --color-green: #2ecc40;
@@ -202,9 +204,17 @@ input[type='week'] {
   color: var(--blue);
 }
 
+.red {
+  color: var(--red);
+}
+.red-muted {
+  color: var(--red-muted);
+}
+
 /* checkboxes */
 .item {
   position: relative;
+  display: flex;
   margin: 0;
   padding: 0;
   border-bottom: 1px solid #3498db;
@@ -243,7 +253,8 @@ input[type='week'] {
   padding: 0.5rem 0;
   cursor: default;
 }
-.item__hidden-input:checked + .item__label {
+.item__hidden-input:checked + .item__label,
+.item__hidden-input:checked ~ div {
   background-color: #f9f9f9;
 }
 .item__hidden-input:checked + .item__label .item__checkbox {
@@ -279,4 +290,51 @@ input[type='week'] {
     width: 2.75px;
     left: 32%;
   }
+}
+
+.mono {
+  font-family: monospace;
+}
+
+.item__qtySelector {
+  flex: 1 1 auto;
+  display: none;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.item__hidden-input:checked ~ .item__qtySelector {
+  display: flex;
+}
+
+.item__qtySelector-numWrapper {
+  position: relative;
+  width: 1rem;
+  margin: 0 0.25rem;
+}
+
+.item__qtySelector-numInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  border: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.item__qtySelector-numLabel {
+  text-align: center;
+  color: var(--red-muted);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace;
+  font-size: 16px;
+}
+.item__qtySelector-numInput:hover + .item__qtySelector-numLabel,
+.item__qtySelector-numInput:checked + .item__qtySelector-numLabel {
+  color: var(--red);
 }

@@ -8,4 +8,6 @@ router.get('/groceries/:item', itemController.getItem);
 
 router.post('/add', itemController.createItem);
 
+router.post('/submit', itemController.postSubmit);
+
 module.exports = router;
