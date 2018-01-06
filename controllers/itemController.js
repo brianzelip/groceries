@@ -30,11 +30,6 @@ exports.createItem = async (req, res) => {
 exports.postSubmit = (req, res) => {
   const selectedItems = req.body.items;
 
-  res.render('groceryList', {
-    selectedItems,
-    all: req.body,
-    keys: Object.keys(req.body)
-  });
   // pass an array of objects to the rendered GroceryList view,
   // where each object in the array represents an item selected by the user
   // with the following data per selected item:
@@ -43,4 +38,23 @@ exports.postSubmit = (req, res) => {
   // [once the above two steps are complete, then work on the next two steps]
   // 3. the store to get the item at
   // 4. the area where the item is located in the store
+
+  const outputObj = [];
+
+  function rmHyphens(slug) {
+    return slug.replace(/-/g, ' ');
+  }
+
+  selectedItems.forEach(item => {
+    const itemObj = {};
+    itemObj.name = rmHyphens(item);
+    outputObj.push(itemObj);
+  });
+
+  // res.render('groceryList', {
+  //   selectedItems,
+  //   all: req.body,
+  //   keys: Object.keys(req.body)
+  // });
+  res.json(outputObj);
 };
