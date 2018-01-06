@@ -28,5 +28,19 @@ exports.createItem = async (req, res) => {
 };
 
 exports.postSubmit = (req, res) => {
-  res.json(req.body);
+  const selectedItems = req.body.items;
+
+  res.render('groceryList', {
+    selectedItems,
+    all: req.body,
+    keys: Object.keys(req.body)
+  });
+  // pass an array of objects to the rendered GroceryList view,
+  // where each object in the array represents an item selected by the user
+  // with the following data per selected item:
+  // 1. item name
+  // 2. the number of items to get from the store
+  // [once the above two steps are complete, then work on the next two steps]
+  // 3. the store to get the item at
+  // 4. the area where the item is located in the store
 };
