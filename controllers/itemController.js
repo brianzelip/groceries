@@ -26,3 +26,7 @@ exports.createItem = async (req, res) => {
   );
   res.redirect('/');
 };
+
+exports.postSubmit = (req, res) => {
+  res.json(req.body);
+};
