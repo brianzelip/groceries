@@ -73,5 +73,8 @@ exports.postSubmit = (req, res) => {
   //   all: req.body,
   //   keys: Object.keys(req.body)
   // });
-  res.json(outputObj);
+
+  // res.json(outputObj);
+
+  res.render('groceryList', { items: outputObj });
 };
