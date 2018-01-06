@@ -153,6 +153,8 @@ input[type='week'] {
 
 :root {
   --blue: #3498db;
+  --red: #ca34db;
+  --red-muted: #edbbf2;
 
   /* flashes */
   --color-green: #2ecc40;
@@ -202,9 +204,17 @@ input[type='week'] {
   color: var(--blue);
 }
 
+.red {
+  color: var(--red);
+}
+.red-muted {
+  color: var(--red-muted);
+}
+
 /* checkboxes */
 .item {
   position: relative;
+  display: flex;
   margin: 0;
   padding: 0;
   border-bottom: 1px solid #3498db;
@@ -282,17 +292,49 @@ input[type='week'] {
   }
 }
 
-.badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 1.5rem;
-  width: 1.5rem;
-  margin: 0 0.125rem;
-  font-size: 0.7rem;
+.mono {
   font-family: monospace;
-  border: 1px solid var(--blue);
-  border-radius: 50%;
+}
+
+.itemQtySelector {
+  flex: 1 1 auto;
+  display: none;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.item__hidden-input:checked ~ .itemQtySelector {
+  display: flex;
+}
+
+.itemQtySelector__numWrapper {
+  position: relative;
+  width: 1rem;
+  margin: 0 0.25rem;
+}
+
+.itemQtySelector__numInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  border: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.itemQtySelector__numLabel {
   text-align: center;
-  color: var(--blue);
+  color: var(--red-muted);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace;
+  font-size: 16px;
+}
+.itemQtySelector__numInput:hover + .itemQtySelector__numLabel,
+.itemQtySelector__numInput:checked + .itemQtySelector__numLabel {
+  color: var(--red);
 }
