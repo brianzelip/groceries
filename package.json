@@ -5,12 +5,13 @@
   "main": "start.js",
   "scripts": {
     "watch": "nodemon ./start.js --ignore public/",
-    "css":
-      "postcss -u postcss-custom-properties postcss-color-function postcss-import autoprefixer cssnano -o public/css/groceries.min.css public/css/groceries.css --no-map --watch",
-    "start":
-      "concurrently \"npm run watch\" \"npm run css\" --names \"😈,📦\" --prefix name"
+    "css": "postcss -u postcss-custom-properties postcss-color-function postcss-import autoprefixer cssnano -o public/css/groceries.min.css public/css/groceries.css --no-map --watch",
+    "start": "concurrently \"npm run watch\" \"npm run css\" --names \"😈,📦\" --prefix name"
   },
-  "keywords": ["groceries", "javascript"],
+  "keywords": [
+    "groceries",
+    "javascript"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/brianzelip/groceries.git"
@@ -25,6 +26,7 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "mongoose": "^5.0.0-rc0",
+    "nodemailer": "^4.4.1",
     "pug": "^2.0.0-rc.4",
     "slugs": "^0.1.3"
   },

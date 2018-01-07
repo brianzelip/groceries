@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Item = mongoose.model('Item');
+const nodemailer = require('nodemailer');
 
 exports.app = async (req, res) => {
   // 1 .query the database for a list of all items
@@ -36,9 +37,8 @@ exports.outputGroceryList = (req, res) => {
   // with the following data per selected item:
   // 1. COMPLETE item name
   // 2. COMPLETE the number of items to get from the store
-  // 3. get the item's area from the database
-  // ?. the store to get the item at
-  // ?. the area where the item is located in the store
+  // 3. COMPLETE item's area from the input value string
+  // 4. the store to get the item at
 
   const outputObj = [];
 
@@ -76,5 +76,47 @@ exports.outputGroceryList = (req, res) => {
 
   // res.json(outputObj);
 
-  res.render('groceryList', { items: outputObj });
+  // generated via https://ethereal.email/create
+  // const transporter = nodemailer.createTransport({
+  //   host: 'smtp.ethereal.email',
+  //   port: 587,
+  //   auth: {
+  //     user: 'azfats3yaiwkdxv4@ethereal.email',
+  //     pass: 'cDntrsAWDahE4pytnM'
+  //   }
+  // });
+  const transporter = nodemailer.createTransport({
+    host: 'smtpout.secureserver.net',
+    port: 3535,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
+    }
+  });
+
+  // setup email data with unicode symbols
+  let mailOptions = {
+    from: '"A&B ✌️" <holler@abbieandbrian.us>',
+    to: 'bzelip@gmail.com',
+    subject: 'Hello ✔',
+    text: 'Hello world?',
+    html: JSON.stringify(outputObj, null, 2)
+  }; // sender address // list of receivers // Subject line // plain text body // html body
+
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Message sent: %s', info.messageId);
+    // Preview only available when sending through an Ethereal account
+    // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@blurdybloop.com>
+    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  });
+
+  res.render('groceryList', {
+    items: outputObj
+  });
 };
