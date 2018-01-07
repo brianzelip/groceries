@@ -30,7 +30,6 @@ exports.createItem = async (req, res) => {
 
 exports.outputGroceryList = (req, res) => {
   const selectedItems = req.body.items;
-  const slugs = Object;
 
   // pass an array of objects to the rendered GroceryList view,
   // where each object in the array represents an item selected by the user
@@ -68,23 +67,6 @@ exports.outputGroceryList = (req, res) => {
     outputObj.push(itemObj);
   });
 
-  // res.render('groceryList', {
-  //   selectedItems,
-  //   all: req.body,
-  //   keys: Object.keys(req.body)
-  // });
-
-  // res.json(outputObj);
-
-  // generated via https://ethereal.email/create
-  // const transporter = nodemailer.createTransport({
-  //   host: 'smtp.ethereal.email',
-  //   port: 587,
-  //   auth: {
-  //     user: 'azfats3yaiwkdxv4@ethereal.email',
-  //     pass: 'cDntrsAWDahE4pytnM'
-  //   }
-  // });
   const transporter = nodemailer.createTransport({
     host: 'smtpout.secureserver.net',
     port: 3535,
@@ -94,26 +76,20 @@ exports.outputGroceryList = (req, res) => {
     }
   });
 
-  // setup email data with unicode symbols
   let mailOptions = {
-    from: '"A&B ✌️" <holler@abbieandbrian.us>',
+    from: '"🧀 A&B Grocery Planning 🍼" <holler@abbieandbrian.us>',
     to: 'bzelip@gmail.com',
-    subject: 'Hello ✔',
-    text: 'Hello world?',
+    subject: 'grocery list',
+    text:
+      'Sorry, at the moment there is nothing to see here in the plain text version :(JSON.stringify(outputObj, null, 2)',
     html: JSON.stringify(outputObj, null, 2)
-  }; // sender address // list of receivers // Subject line // plain text body // html body
+  };
 
-  // send mail with defined transport object
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       return console.log(error);
     }
     console.log('Message sent: %s', info.messageId);
-    // Preview only available when sending through an Ethereal account
-    // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-
-    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@blurdybloop.com>
-    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
   });
 
   res.render('groceryList', {
