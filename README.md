@@ -9,10 +9,12 @@ A web app for family groceries planning.
 * Express.js server
 * Pug templates
 * PostCSS and npm scripts CSS workflow
+* Mail via nodemailer and a personal GoDaddy email acct
 
 ## Dev notes
 
 **Styling `<input type="checkbox">`**
+
 Crazy how much work it takes to style a checkbox. Here are the links I read through and the [solution I went with](https://codepen.io/derekmorash/pen/Eydxab).
 
 * [Custom CSS Checkbox](https://codepen.io/derekmorash/pen/Eydxab) by Derek Morash (**the solution I adapted**)
