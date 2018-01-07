@@ -89,7 +89,7 @@ exports.outputGroceryList = (req, res) => {
   });
 
   let mailOptions = {
-    from: '"🧀 A&B Grocery Planning 🍼" <holler@abbieandbrian.us>',
+    from: '"🧀 A&B Groceries 🍼" <holler@abbieandbrian.us>',
     to: 'bzelip@gmail.com',
     subject: 'grocery list',
     text:
