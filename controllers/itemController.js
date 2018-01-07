@@ -28,31 +28,19 @@ exports.createItem = async (req, res) => {
   res.redirect('/');
 };
 
-exports.outputGroceryList = (req, res) => {
+exports.processUserInput = (req, res, next) => {
   const selectedItems = req.body.items;
-
-  // pass an array of objects to the rendered GroceryList view,
-  // where each object in the array represents an item selected by the user
-  // with the following data per selected item:
-  // 1. COMPLETE item name
-  // 2. COMPLETE the number of items to get from the store
-  // 3. COMPLETE item's area from the input value string
-  // 4. the store to get the item at
-
-  const outputObj = [];
+  req.body.outputObj = [];
 
   function getName(str) {
     return str.replace(/-/g, ' ').split('+')[0];
   }
-
   function getSlug(str) {
     return str.split('+')[0];
   }
-
   function getArea(str) {
     return str.split('+')[1];
   }
-
   function getQty(str) {
     return req.body.hasOwnProperty(`${getSlug(str)}-qty`)
       ? req.body[`${getSlug(str)}-qty`]
@@ -64,8 +52,32 @@ exports.outputGroceryList = (req, res) => {
     itemObj.name = getName(item);
     itemObj.area = getArea(item);
     itemObj.qty = getQty(item);
-    outputObj.push(itemObj);
+    req.body.outputObj.push(itemObj);
   });
+
+  // once we have processed the user input, keep going!
+  next();
+}; // this is middleware, we will get the user submitted data, generate the email html, then pass it to the outputGroceryList controller
+
+exports.outputGroceryList = (req, res) => {
+  // pass an array of objects to the rendered GroceryList view,
+  // where each object in the array represents an item selected by the user
+  // with the following data per selected item:
+  // 1. COMPLETE item name
+  // 2. COMPLETE the number of items to get from the store
+  // 3. COMPLETE item's area from the input value string
+  // 4. the store to get the item at
+
+  const sortedItems = req.body.outputObj.sort((a, b) => a.area - b.area);
+
+  let emailOutput = `
+    <ol>
+      ${sortedItems
+        .map(
+          item => `<li>${item.name} (x${item.qty}) in area ${item.area}</li>`
+        )
+        .join('')}
+    </ol>`;
 
   const transporter = nodemailer.createTransport({
     host: 'smtpout.secureserver.net',
@@ -82,7 +94,7 @@ exports.outputGroceryList = (req, res) => {
     subject: 'grocery list',
     text:
       'Sorry, at the moment there is nothing to see here in the plain text version :(JSON.stringify(outputObj, null, 2)',
-    html: JSON.stringify(outputObj, null, 2)
+    html: emailOutput
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -93,6 +105,7 @@ exports.outputGroceryList = (req, res) => {
   });
 
   res.render('groceryList', {
-    items: outputObj
+    items: req.body.outputObj,
+    emailOutput
   });
 };

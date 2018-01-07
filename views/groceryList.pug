@@ -2,9 +2,12 @@ extends default
 
 block content
 
+  a(href="/").btn Go back to list
   pre= h.dump(items)
   hr
   - let sorted = items.sort((a, b) => a.area - b.area)
   ol
     each item in sorted
       li= `${item.name} (x${item.qty}) in area ${item.area}`
+  hr
+  pre= h.dump(emailOutput)
