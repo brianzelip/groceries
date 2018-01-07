@@ -36,9 +36,8 @@ exports.outputGroceryList = (req, res) => {
   // with the following data per selected item:
   // 1. COMPLETE item name
   // 2. COMPLETE the number of items to get from the store
-  // 3. get the item's area from the database
-  // ?. the store to get the item at
-  // ?. the area where the item is located in the store
+  // 3. COMPLETE item's area from the input value string
+  // 4. the store to get the item at
 
   const outputObj = [];
 
