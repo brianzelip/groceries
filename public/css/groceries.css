@@ -203,6 +203,9 @@ input[type='week'] {
 .blue {
   color: var(--blue);
 }
+.bg-blue {
+  background-color: var(--blue);
+}
 
 .red {
   color: var(--red);
@@ -280,7 +283,7 @@ input[type='week'] {
     height: 12px;
     width: 12px;
     margin: 1.25rem;
-    border-radius: 2px;
+    border-radius: 3px;
   }
   .item__text {
     padding: 0.75rem 0;
@@ -337,4 +340,13 @@ input[type='week'] {
 .item__qtySelector-numInput:hover + .item__qtySelector-numLabel,
 .item__qtySelector-numInput:checked + .item__qtySelector-numLabel {
   color: var(--red);
+}
+
+.submit {
+  background-color: var(--blue);
+  padding: ;
+}
+
+.fw400 {
+  font-weight: 400;
 }
