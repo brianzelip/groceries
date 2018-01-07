@@ -3,11 +3,11 @@ include itemQtySelector
 mixin list(item)
 
   form(action="/submit" method="POST")
-    ol.list-reset.mb0
+    ol.list-reset.mb0.border.rounded
       each item in items
         li.item
           +itemCheckboxAndText(item)
           +itemQtySelector(item)
-    input(type="submit")
+    input(type="submit" value="Submit").mt2.col-12.btn.btn-primary.bg-blue.fw400
 
   script(src="js/numberInput.js")
