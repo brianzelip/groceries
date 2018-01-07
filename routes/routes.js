@@ -8,6 +8,6 @@ router.get('/groceries/:item', itemController.getItem);
 
 router.post('/add', itemController.createItem);
 
-router.post('/submit', itemController.postSubmit);
+router.post('/submit', itemController.outputGroceryList);
 
 module.exports = router;

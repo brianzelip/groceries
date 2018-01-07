@@ -27,7 +27,7 @@ exports.createItem = async (req, res) => {
   res.redirect('/');
 };
 
-exports.postSubmit = (req, res) => {
+exports.outputGroceryList = (req, res) => {
   const selectedItems = req.body.items;
   const slugs = Object;
 
