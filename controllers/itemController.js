@@ -12,6 +12,10 @@ exports.getItem = (req, res) => {
   res.send(`passed param: ${req.params.item}`);
 };
 
+exports.addItem = (req, res) => {
+  res.render('addItem', { title: 'Add item' });
+};
+
 exports.postAdd = (req, res) => {
   res.json(req.body);
 };

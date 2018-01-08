@@ -9,6 +9,8 @@ router.get('/groceries/:item', itemController.getItem);
 
 router.post('/add', catchErrors(itemController.createItem));
 
+router.get('/add', itemController.addItem);
+
 router.post(
   '/submit',
   itemController.processUserInput,
