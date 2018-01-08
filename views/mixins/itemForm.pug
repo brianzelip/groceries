@@ -6,8 +6,6 @@ mixin itemForm(item = {})
     //- the item object, then the action will go to the route for /add/
     label(for="name") Name
     input(type="text" name="name" value=item.name)
-    label(for="variant") Variant
-    input(type="text" name="variant" value=item.variant)
     label(for="area") Area
     input(type="text" name="area" value=item.area)
     input.button(type="submit" value="Save →")
