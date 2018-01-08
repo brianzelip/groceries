@@ -6,15 +6,16 @@ const slug = require('slugs');
 const itemSchema = new mongoose.Schema({
   name: {
     type: String,
-    trim: true
+    trim: true,
+    required: 'Please enter an item name!'
   },
-  variant: {
-    type: String,
-    trim: true
-  },
-  store: String,
-  area: Number,
-  slug: String
+  slug: String,
+  stores: [
+    {
+      store: String,
+      area: Number
+    }
+  ]
 });
 
 itemSchema.pre('save', function(next) {
@@ -22,7 +23,7 @@ itemSchema.pre('save', function(next) {
     next(); // go to next middleware or route function
     return; // terminate this function
   }
-  this.slug = slug(`${this.name} ${this.variant}`);
+  this.slug = slug(`${this.name}`);
   next();
   // TODO make more resiliant so slugs are unique (in case two items have the same name)
 }); // needs to be a long-form function because we need `this`, so arrow func won't do
