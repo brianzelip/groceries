@@ -11,12 +11,10 @@ const itemSchema = new mongoose.Schema({
   },
   slug: String,
   stores: {
-    tj: {
-      area: Number
-    },
-    moms: {
-      area: Number
-    },
+    tj: Boolean,
+    tjArea: Number,
+    moms: Boolean,
+    momsArea: Number,
     ws: Boolean,
     fm: Boolean
   }
