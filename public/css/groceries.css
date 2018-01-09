@@ -153,6 +153,7 @@ input[type='week'] {
 
 :root {
   --blue: #3498db;
+  --dark-blue: #2978ad;
   --red: #ca34db;
   --red-muted: #edbbf2;
 
@@ -212,6 +213,15 @@ input[type='week'] {
 }
 .red-muted {
   color: var(--red-muted);
+}
+
+a {
+  color: var(--blue);
+}
+
+a:hover {
+  color: var(--dark-blue);
+  text-decoration: none;
 }
 
 /* checkboxes */
