@@ -17,3 +17,10 @@ exports.site = {
   description: `Family groceries web app.`,
   keywords: ['Node.js', 'Express.js', 'MongoDB', 'groceries']
 };
+
+exports.hasStore = obj => {
+  const stores = ['tj', 'moms', 'ws', 'fm'];
+  let result = false;
+  stores.forEach(store => (obj[store] ? (result = true) : null));
+  return result;
+};
