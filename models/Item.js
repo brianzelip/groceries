@@ -10,12 +10,16 @@ const itemSchema = new mongoose.Schema({
     required: 'Please enter an item name!'
   },
   slug: String,
-  stores: [
-    {
-      store: String,
+  stores: {
+    tj: {
       area: Number
-    }
-  ]
+    },
+    moms: {
+      area: Number
+    },
+    ws: Boolean,
+    fm: Boolean
+  }
 });
 
 itemSchema.pre('save', function(next) {
