@@ -9,9 +9,6 @@ mixin list(item)
         li.item
           +itemCheckboxAndText(item)
           +itemQtySelector(item)
-          if h.hasStore(item.stores)
-            p YES THIS JAWN HAS A STORE!
-          //- +itemStoresSelector(item)
+          if h.atStores(item.stores).length > 0
+            +itemStoresSelector(item)
     input(type="submit" value="Submit").mt2.col-12.btn.btn-primary.bg-blue.fw400
-
-  script(src="js/numberInput.js")
