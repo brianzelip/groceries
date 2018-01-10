@@ -11,12 +11,18 @@ const itemSchema = new mongoose.Schema({
   },
   slug: String,
   stores: {
-    tj: Boolean,
-    tjArea: Number,
-    moms: Boolean,
-    momsArea: Number,
-    ws: Boolean,
-    fm: Boolean
+    tj: {
+      hasItem: Boolean,
+      itemArea: Number
+    },
+    moms: {
+      hasItem: Boolean,
+      itemArea: Number
+    },
+    wineSource: Boolean,
+    farmersMarket: Boolean,
+    target: Boolean,
+    riteAid: Boolean
   }
 });
 
