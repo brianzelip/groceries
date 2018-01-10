@@ -108,6 +108,8 @@ exports.outputGroceryList = (req, res) => {
 
   res.render('groceryList', {
     outputObj: req.body.outputObj,
-    emailOutput
+    emailOutput,
+    items: req.body.items,
+    formData: req.body
   });
 };
