@@ -18,9 +18,22 @@ exports.site = {
   keywords: ['Node.js', 'Express.js', 'MongoDB', 'groceries']
 };
 
-exports.hasStore = obj => {
-  const stores = ['tj', 'moms', 'ws', 'fm'];
-  let result = false;
-  stores.forEach(store => (obj[store] ? (result = true) : null));
+exports.atStores = obj => {
+  const stores = [
+    'tj',
+    'moms',
+    'wineSource',
+    'farmersMarket',
+    'target',
+    'riteAid'
+  ];
+  const result = [];
+  stores.forEach(store => {
+    console.log(`${store.toUpperCase()} :: at loop start result = ${result}`);
+    typeof obj[store] === 'boolean'
+      ? obj[store] ? result.push(store) : null
+      : obj[store].hasItem ? result.push(store) : null;
+    console.log(`at loop end result = ${result}`);
+  });
   return result;
 };
