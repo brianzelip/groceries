@@ -4,11 +4,11 @@ block content
   //- TODO sort output by store, then by area if area
   a(href="/").btn Go back to list
   pre= h.dump(outputObj)
-  hr
-  - let sorted = outputObj.sort((a, b) => a.area - b.area)
-  ol
-    each item in sorted
-      li= `${item.name} (x${item.qty}) in area ${item.area}`
+  //- hr
+  //- - let sorted = outputObj.sort((a, b) => a.area - b.area)
+  //- ol
+  //-   each item in sorted
+  //-     li= `${item.name} (x${item.qty}) in area ${item.area}`
   hr
   pre= h.dump(emailOutput)
   hr

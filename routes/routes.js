@@ -13,7 +13,7 @@ router.get('/add', itemController.addItem);
 
 router.post(
   '/submit',
-  itemController.processUserInput,
+  itemController.processFormData,
   itemController.outputGroceryList
 );
 

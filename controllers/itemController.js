@@ -30,6 +30,42 @@ exports.createItem = async (req, res) => {
   res.redirect('/');
 };
 
+exports.processFormData = (req, res, next) => {
+  // we have the list of items to get
+  // for each item in the items list array,
+  // make a selectedItems object in middleware
+  // selectedItems looks like:
+  // selectedItems = { `${item.slug}`: {qty: `${qty}`, store: [`${store}`]}};
+  //   1. check if there is a item-qty value
+  //     1a. if yes,
+  //   2. check if there is a item-store value
+  const selectedItems = req.body.items;
+  req.body.outputObj = {};
+
+  function hasQty(item) {
+    req.body.hasOwnProperty(`${item}-qty`) ? true : false;
+  }
+  function hasStore(item) {
+    req.body.hasOwnProperty(`${item}-store`) ? true : false;
+  }
+
+  selectedItems.forEach(item => {
+    req.body.outputObj[item] = {};
+    hasQty(item)
+      ? (req.body.outputObj[item].qty = req.body[`${item}-qty`])
+      : null;
+    hasStore(item)
+      ? (req.body.outputObj[item].store = req.body[`${item}-store`])
+      : null;
+  });
+  console.log(
+    'via processFormData() >> req.body.outputObj = ',
+    req.body.outputObj
+  );
+
+  next();
+};
+
 exports.processUserInput = (req, res, next) => {
   const selectedItems = req.body.items;
   req.body.outputObj = [];
@@ -70,14 +106,21 @@ exports.outputGroceryList = (req, res) => {
   // 3. COMPLETE item's area from the input value string
   // 4. the store to get the item at
 
-  const sortedItems = req.body.outputObj.sort((a, b) => a.area - b.area);
+  // const sortedItems = req.body.outputObj.sort((a, b) => a.area - b.area);
+  const sortedItems = req.body.outputObj;
 
+  // let emailOutput = `
+  //   <ol>
+  //     ${sortedItems
+  //       .map(
+  //         item => `<li>${item.name} (x${item.qty}) in area ${item.area}</li>`
+  //       )
+  //       .join('')}
+  //   </ol>`;
   let emailOutput = `
     <ol>
-      ${sortedItems
-        .map(
-          item => `<li>${item.name} (x${item.qty}) in area ${item.area}</li>`
-        )
+      ${Object.keys(sortedItems)
+        .map(item => `<li>${item.name} (x${item.qty}) from ${item.store}</li>`)
         .join('')}
     </ol>`;
 
