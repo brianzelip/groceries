@@ -68,6 +68,19 @@ body,
   align-self: flex-start;
 }
 
+.fg1 {
+  flex-grow: 1;
+}
+.fg2 {
+  flex-grow: 2;
+}
+.fg3 {
+  flex-grow: 3;
+}
+.fg4 {
+  flex-grow: 4;
+}
+
 .px0 {
   padding-right: 0;
   padding-left: 0;
@@ -309,23 +322,30 @@ a:hover {
   font-family: monospace;
 }
 
+.item__storesSelector,
 .item__qtySelector {
-  flex: 1 1 auto;
   display: none;
   align-items: center;
+  flex-wrap: wrap;
   padding: 0 1rem;
 }
 
+.item__hidden-input:checked ~ .item__storesSelector,
 .item__hidden-input:checked ~ .item__qtySelector {
   display: flex;
 }
 
+.item__storesSelector-storeWrapper {
+  position: relative;
+  margin: 0 0.25rem;
+}
 .item__qtySelector-numWrapper {
   position: relative;
   width: 1rem;
   margin: 0 0.25rem;
 }
 
+.item__storesSelector-storeInput,
 .item__qtySelector-numInput {
   position: absolute;
   top: 0;
@@ -338,6 +358,7 @@ a:hover {
   cursor: pointer;
 }
 
+.item__storesSelector-storeLabel,
 .item__qtySelector-numLabel {
   text-align: center;
   color: var(--red-muted);
@@ -347,6 +368,9 @@ a:hover {
   font-family: monospace;
   font-size: 16px;
 }
+
+.item__storesSelector-storeInput:hover + .item__storesSelector-storeLabel,
+.item__storesSelector-storeInput:checked + .item__storesSelector-storeLabel,
 .item__qtySelector-numInput:hover + .item__qtySelector-numLabel,
 .item__qtySelector-numInput:checked + .item__qtySelector-numLabel {
   color: var(--red);
