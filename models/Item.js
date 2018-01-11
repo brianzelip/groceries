@@ -22,7 +22,8 @@ const itemSchema = new mongoose.Schema({
     wineSource: Boolean,
     farmersMarket: Boolean,
     target: Boolean,
-    riteAid: Boolean
+    riteAid: Boolean,
+    default: String
   }
 });
 
