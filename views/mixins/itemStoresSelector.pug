@@ -1,8 +1,9 @@
 mixin itemStoresSelector(item)
-  .item__storesSelector
+  .item__storesSelector.col-4
     span.mr1.mono.red from:
     - const stores = h.atStores(item.stores);
+    - const storesDict = { tj: 'TJ', moms: 'Moms', wineSource: 'Wine Source', farmersMarket: 'Mkt', target: 'Target', riteAid: 'Rite Aid' }
     each store in stores
       .item__storesSelector-storeWrapper
         input(type="checkbox" name=`${item.slug}-store` id=`${item.slug}-${store}` value=`${store}`).item__storesSelector-storeInput
-        label(for=`${item.slug}-${store}`).item__storesSelector-storeLabel= store
+        label(for=`${item.slug}-${store}`).item__storesSelector-storeLabel= storesDict[store]
