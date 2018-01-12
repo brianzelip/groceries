@@ -3,6 +3,10 @@ extends default
 block content
   //- TODO sort output by store, then by area if area
   a(href="/").btn Go back to list
+  h3 req.body dump
+  pre= h.dump(formData)
+  hr
+  h3 outputObj dump
   pre= h.dump(outputObj)
   //- hr
   //- - let sorted = outputObj.sort((a, b) => a.area - b.area)
@@ -10,9 +14,10 @@ block content
   //-   each item in sorted
   //-     li= `${item.name} (x${item.qty}) in area ${item.area}`
   hr
+  h3 = emailOutput dump
   pre= h.dump(emailOutput)
   hr
-  h3 emailOutput
+  h3 emailOutput html
   div!= emailOutput
   hr
   h3 items dump
