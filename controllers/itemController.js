@@ -40,7 +40,7 @@ exports.processFormData = (req, res, next) => {
   //     1a. if yes,
   //   2. check if there is a item-store value
   const selectedItems = req.body.items;
-  req.body.outputObj = {};
+  Object.defineProperty(req.body, 'outputObj', { value: {} });
 
   function hasQty(item) {
     req.body.hasOwnProperty(`${item}-qty`) ? true : false;
@@ -49,53 +49,72 @@ exports.processFormData = (req, res, next) => {
     req.body.hasOwnProperty(`${item}-store`) ? true : false;
   }
 
-  selectedItems.forEach(item => {
-    req.body.outputObj[item] = {};
-    hasQty(item)
-      ? (req.body.outputObj[item].qty = req.body[`${item}-qty`])
-      : null;
-    hasStore(item)
-      ? (req.body.outputObj[item].store = req.body[`${item}-store`])
-      : null;
-  });
-  console.log(
-    'via processFormData() >> req.body.outputObj = ',
-    req.body.outputObj
-  );
+  function getSelectorDataFromItem(str, suffix) {
+    if (req.body.hasOwnProperty(`${str}-${suffix}`)) {
+      return req.body[`${str}-${suffix}`];
+    } else {
+      return undefined;
+    }
+  }
+
+  function getSelectorDataFromItem(str, suffix) {
+    if (req.body.hasOwnProperty(`${str}-${suffix}`)) {
+      console.log(reqBody[`${str}-${suffix}`]);
+      return reqBody[`${str}-${suffix}`];
+    }
+  }
+
+  function itemHasSelectorData(item, selector) {
+    if (req.body.hasOwnProperty(`${item}-${selector}`)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function createOutputObj(arr) {
+    const result = {};
+
+    arr.forEach(item => {
+      const [qty, store] = ['qty', 'store'];
+      result[item] = {};
+
+      if (itemHasSelectorData(item, qty)) {
+        result[item].qty = req.body[`${item}-${qty}`];
+      }
+      if (itemHasSelectorData(item, store)) {
+        result[item].qty = req.body[`${item}-${store}`];
+      }
+    });
+
+    console.log('createOutputObj() >>>>>>>>>>>>>>', result);
+    return result;
+  }
+
+  // selectedItems.forEach(item => {
+  //   if (itemHasSelectorData(item, 'qty')) {
+  //     Object.defineProperty(req.body.outputObj, 'qty', {
+  //       value: req.body[`${item}-qty`]
+  //     });
+  //   }
+  //   console.log('qty DATA::::::::::', req.body.outputObj);
+  //   if (itemHasSelectorData(item, 'store')) {
+  //     Object.defineProperty(req.body.outputObj, 'store', {
+  //       value: req.body[`${item}-qty`]
+  //     });
+  //   }
+  //   console.log('store DATA::::::::::', req.body.outputObj);
+  // });
+
+  // console.log(
+  //   'via processFormData() >> req.body.outputObj = ',
+  //   req.body.outputObj
+  // );
+
+  req.body.outputObj = createOutputObj(selectedItems);
 
   next();
 };
-
-exports.processUserInput = (req, res, next) => {
-  const selectedItems = req.body.items;
-  req.body.outputObj = [];
-
-  function getName(str) {
-    return str.replace(/-/g, ' ').split('+')[0];
-  }
-  function getSlug(str) {
-    return str.split('+')[0];
-  }
-  function getArea(str) {
-    return str.split('+')[1];
-  }
-  function getQty(str) {
-    return req.body.hasOwnProperty(`${getSlug(str)}-qty`)
-      ? req.body[`${getSlug(str)}-qty`]
-      : 1;
-  }
-
-  selectedItems.forEach(item => {
-    const itemObj = {};
-    itemObj.name = getName(item);
-    itemObj.area = getArea(item);
-    itemObj.qty = getQty(item);
-    req.body.outputObj.push(itemObj);
-  });
-
-  // once we have processed the user input, keep going!
-  next();
-}; // this is middleware, we will get the user submitted data, generate the email html, then pass it to the outputGroceryList controller
 
 exports.outputGroceryList = (req, res) => {
   // pass an array of objects to the rendered GroceryList view,
@@ -120,7 +139,12 @@ exports.outputGroceryList = (req, res) => {
   let emailOutput = `
     <ol>
       ${Object.keys(sortedItems)
-        .map(item => `<li>${item.name} (x${item.qty}) from ${item.store}</li>`)
+        .map(
+          item =>
+            `<li>${item} (x${sortedItems[item].qty}) from ${
+              sortedItems[item].store
+            }</li>`
+        )
         .join('')}
     </ol>`;
 
