@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Item = mongoose.model('Item');
 const nodemailer = require('nodemailer');
+const h = require('../helpers');
 
 exports.app = async (req, res) => {
   // 1 .query the database for a list of all items
@@ -76,22 +77,15 @@ exports.outputGroceryList = (req, res) => {
     return Object.keys(obj).filter(prop => obj[prop].store === 'moms');
   }
 
-  function itemsAtAStore(storeName, obj) {
+  function itemsAtAStore(obj, storeName) {
     return Object.keys(obj).filter(prop => obj[prop].store === storeName);
   }
 
-  const stores = [
-    'tj',
-    'moms',
-    'wineSource',
-    'farmersMarket',
-    'target',
-    'riteAid'
-  ];
-
-  let storesHTML = stores.map(store => {
-    createStoreListHtml(store, itemsAtAStore(store, data), data);
-  });
+  let storesHTML = h.stores
+    .map(
+      store => `${createStoreListHtml(store, itemsAtAStore(data, store), data)}`
+    )
+    .join('');
 
   let tjsHTML = createStoreListHtml("Trader Joe's", itemsAtTJs(data), data);
   let momsHTML = createStoreListHtml('Moms', itemsAtMoms(data), data);
