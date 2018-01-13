@@ -31,71 +31,11 @@ exports.createItem = async (req, res) => {
 };
 
 exports.processFormData = (req, res, next) => {
-  // we have the list of items to get
-  // for each item in the items list array,
-  // make a selectedItems object in middleware
-  // selectedItems looks like:
-  // selectedItems = { `${item.slug}`: {qty: `${qty}`, store: [`${store}`]}};
-  //   1. check if there is a item-qty value
-  //     1a. if yes,
-  //   2. check if there is a item-store value
-  // const selectedItems = req.body.items;
+  const userSelectedItems = req.body.items;
 
-  // function hasQty(item) {
-  //   req.body.hasOwnProperty(`${item}-qty`) ? true : false;
-  // }
-  // function hasStore(item) {
-  //   req.body.hasOwnProperty(`${item}-store`) ? true : false;
-  // }
+  req.body._data = {};
 
-  // function getSelectorDataFromItem(itemName, suffix) {
-  //   if (req.body.hasOwnProperty(`${itemName}-${suffix}`)) {
-  //     console.log(reqBody[`${itemName}-${suffix}`]);
-  //     return reqBody[`${itemName}-${suffix}`];
-  //   }
-  // }
-
-  // function itemHasSelectorData(itemName, selector) {
-  //   if (req.body.hasOwnProperty(`${itemName}-${selector}`)) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
-  // function createOutputObj(arr) {
-  //   const result = {};
-
-  //   arr.forEach(item => {
-  //     const [qty, store] = ['qty', 'store'];
-  //     result[item] = {};
-
-  //     if (itemHasSelectorData(item, qty)) {
-  //       result[item].qty = req.body[`${item}-${qty}`];
-  //     }
-  //     if (itemHasSelectorData(item, store)) {
-  //       result[item].store = req.body[`${item}-${store}`];
-  //     }
-  //   });
-
-  //   console.log('createOutputObj() >>>>>>>>>>>>>>', result);
-  //   console.log('req.body dump>>>>>>>>>>>>>>', req.body);
-  //   return result;
-  // }
-
-  // for each item the user selected (req.body.items),
-  //   gather up all the other key:value info about the item
-  //      add the info key suffix to an object with the value as the info value
-  //        function add keySuffix:value
-  //      func()
-  //    function take each item and make a new object
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-  const userItems = req.body.items;
-  req.body.userOutput = {};
-
-  function addSelectorDataToItemOutput(
+  function addSelectorDataToItemObject(
     itemName,
     objectToFilter,
     objectToAddTo
@@ -110,36 +50,12 @@ exports.processFormData = (req, res, next) => {
     return;
   }
 
-  userItems.forEach(item => {
-    req.body.userOutput[item] = {};
-    addSelectorDataToItemOutput(item, req.body, req.body.userOutput[item]);
+  userSelectedItems.forEach(item => {
+    req.body._data[item] = {};
+    addSelectorDataToItemObject(item, req.body, req.body._data[item]);
   });
 
   next();
-
-  // selectedItems.forEach(item => {
-  //   if (itemHasSelectorData(item, 'qty')) {
-  //     Object.defineProperty(req.body.outputObj, 'qty', {
-  //       value: req.body[`${item}-qty`]
-  //     });
-  //   }
-  //   console.log('qty DATA::::::::::', req.body.outputObj);
-  //   if (itemHasSelectorData(item, 'store')) {
-  //     Object.defineProperty(req.body.outputObj, 'store', {
-  //       value: req.body[`${item}-qty`]
-  //     });
-  //   }
-  //   console.log('store DATA::::::::::', req.body.outputObj);
-  // });
-
-  // console.log(
-  //   'via processFormData() >> req.body.outputObj = ',
-  //   req.body.outputObj
-  // );
-
-  // req.body.outputObj = createOutputObj(selectedItems);
-
-  // next();
 };
 
 exports.outputGroceryList = (req, res) => {
