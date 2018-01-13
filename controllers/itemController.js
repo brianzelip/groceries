@@ -70,13 +70,16 @@ exports.outputGroceryList = (req, res) => {
   const data = req.body._data;
 
   let emailOutput = `
-    <ol>
+    <ol class="list-reset">
       ${Object.keys(data)
         .map(
           prop =>
-            `<li>${prop}${data[prop].qty ? ` (x${data[prop].qty})` : ''}${
-              data[prop].store ? ` (from ${data[prop].store})` : ''
-            }</li>`
+            `<li>
+               <input type="checkbox" value="${prop}" id="${prop}" name="item">
+               <label for="${prop}">${prop}${
+              data[prop].qty ? ` (x${data[prop].qty})` : ''
+            }${data[prop].store ? ` @ ${data[prop].store}` : ''}</label>
+            </li>`
         )
         .join('')}
     </ol>`;
