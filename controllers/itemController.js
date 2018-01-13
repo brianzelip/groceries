@@ -83,7 +83,7 @@ exports.processFormData = (req, res, next) => {
         result[item].qty = req.body[`${item}-${qty}`];
       }
       if (itemHasSelectorData(item, store)) {
-        result[item].qty = req.body[`${item}-${store}`];
+        result[item].store = req.body[`${item}-${store}`];
       }
     });
 
