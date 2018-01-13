@@ -69,16 +69,68 @@ exports.outputGroceryList = (req, res) => {
 
   const data = req.body._data;
 
+  function itemsAtTJs(obj) {
+    return Object.keys(obj).filter(prop => obj[prop].store === 'tj');
+  }
+  function itemsAtMoms(obj) {
+    return Object.keys(obj).filter(prop => obj[prop].store === 'moms');
+  }
+
+  function itemsAtAStore(storeName, obj) {
+    return Object.keys(obj).filter(prop => obj[prop].store === storeName);
+  }
+
+  const stores = [
+    'tj',
+    'moms',
+    'wineSource',
+    'farmersMarket',
+    'target',
+    'riteAid'
+  ];
+
+  let storesHTML = stores.map(store => {
+    createStoreListHtml(store, itemsAtAStore(store, data), data);
+  });
+
+  let tjsHTML = createStoreListHtml("Trader Joe's", itemsAtTJs(data), data);
+  let momsHTML = createStoreListHtml('Moms', itemsAtMoms(data), data);
+
+  function createStoreListHtml(
+    storeName,
+    arrayOfItemNamesAtStoreName,
+    dataObj
+  ) {
+    return `
+      <h1>${storeName}</h1>
+      <ol class="list-reset">
+        ${arrayOfItemNamesAtStoreName
+          .map(
+            itemName => `
+            <li>
+              <input type="checkbox" value="${itemName}" id="${itemName}" name="item">
+              <label for="${itemName}">${itemName}${
+              dataObj[itemName].qty ? ` (x${dataObj[itemName].qty})` : ''
+            }</label>
+            </li>
+          `
+          )
+          .join('')}
+      </ol>
+    `;
+  }
+
   let emailOutput = `
+    ${tjsHTML}
+    ${momsHTML}
     <ol class="list-reset">
       ${Object.keys(data)
         .map(
-          prop =>
-            `<li>
+          prop => `<li>
                <input type="checkbox" value="${prop}" id="${prop}" name="item">
                <label for="${prop}">${prop}${
-              data[prop].qty ? ` (x${data[prop].qty})` : ''
-            }${data[prop].store ? ` @ ${data[prop].store}` : ''}</label>
+            data[prop].qty ? ` (x${data[prop].qty})` : ''
+          }${data[prop].store ? ` @ ${data[prop].store}` : ''}</label>
             </li>`
         )
         .join('')}
