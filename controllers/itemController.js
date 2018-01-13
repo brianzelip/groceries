@@ -67,31 +67,19 @@ exports.outputGroceryList = (req, res) => {
   // 3. COMPLETE item's area from the input value string
   // 4. the store to get the item at
 
-  // const sortedItems = req.body.outputObj.sort((a, b) => a.area - b.area);
-  const sortedItems = req.body.outputObj;
+  const data = req.body._data;
 
-  // let emailOutput = `
-  //   <ol>
-  //     ${sortedItems
-  //       .map(
-  //         item => `<li>${item.name} (x${item.qty}) in area ${item.area}</li>`
-  //       )
-  //       .join('')}
-  //   </ol>`;
-
-  let emailOutput = `hello world!!!`;
-
-  // let emailOutput = `;
-  //   <ol>
-  //     ${Object.keys(sortedItems)
-  //       .map(
-  //         item =>
-  //           `<li>${item} (x${sortedItems[item].qty}) from ${
-  //             sortedItems[item].store
-  //           }</li>`
-  //       )
-  //       .join('')}
-  //   </ol>`;
+  let emailOutput = `
+    <ol>
+      ${Object.keys(data)
+        .map(
+          prop =>
+            `<li>${prop}${data[prop].qty ? ` (x${data[prop].qty})` : ''}${
+              data[prop].store ? ` (from ${data[prop].store})` : ''
+            }</li>`
+        )
+        .join('')}
+    </ol>`;
 
   const transporter = nodemailer.createTransport({
     host: 'smtpout.secureserver.net',
@@ -119,9 +107,7 @@ exports.outputGroceryList = (req, res) => {
   });
 
   res.render('groceryList', {
-    outputObj: req.body.outputObj,
-    emailOutput,
-    items: req.body.items,
-    formData: req.body
+    formData: req.body,
+    emailOutput
   });
 };
