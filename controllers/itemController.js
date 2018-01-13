@@ -39,57 +39,83 @@ exports.processFormData = (req, res, next) => {
   //   1. check if there is a item-qty value
   //     1a. if yes,
   //   2. check if there is a item-store value
-  const selectedItems = req.body.items;
-  Object.defineProperty(req.body, 'outputObj', { value: {} });
+  // const selectedItems = req.body.items;
 
-  function hasQty(item) {
-    req.body.hasOwnProperty(`${item}-qty`) ? true : false;
-  }
-  function hasStore(item) {
-    req.body.hasOwnProperty(`${item}-store`) ? true : false;
-  }
+  // function hasQty(item) {
+  //   req.body.hasOwnProperty(`${item}-qty`) ? true : false;
+  // }
+  // function hasStore(item) {
+  //   req.body.hasOwnProperty(`${item}-store`) ? true : false;
+  // }
 
-  function getSelectorDataFromItem(str, suffix) {
-    if (req.body.hasOwnProperty(`${str}-${suffix}`)) {
-      return req.body[`${str}-${suffix}`];
-    } else {
-      return undefined;
-    }
-  }
+  // function getSelectorDataFromItem(itemName, suffix) {
+  //   if (req.body.hasOwnProperty(`${itemName}-${suffix}`)) {
+  //     console.log(reqBody[`${itemName}-${suffix}`]);
+  //     return reqBody[`${itemName}-${suffix}`];
+  //   }
+  // }
 
-  function getSelectorDataFromItem(str, suffix) {
-    if (req.body.hasOwnProperty(`${str}-${suffix}`)) {
-      console.log(reqBody[`${str}-${suffix}`]);
-      return reqBody[`${str}-${suffix}`];
-    }
-  }
+  // function itemHasSelectorData(itemName, selector) {
+  //   if (req.body.hasOwnProperty(`${itemName}-${selector}`)) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
-  function itemHasSelectorData(item, selector) {
-    if (req.body.hasOwnProperty(`${item}-${selector}`)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // function createOutputObj(arr) {
+  //   const result = {};
 
-  function createOutputObj(arr) {
-    const result = {};
+  //   arr.forEach(item => {
+  //     const [qty, store] = ['qty', 'store'];
+  //     result[item] = {};
 
-    arr.forEach(item => {
-      const [qty, store] = ['qty', 'store'];
-      result[item] = {};
+  //     if (itemHasSelectorData(item, qty)) {
+  //       result[item].qty = req.body[`${item}-${qty}`];
+  //     }
+  //     if (itemHasSelectorData(item, store)) {
+  //       result[item].store = req.body[`${item}-${store}`];
+  //     }
+  //   });
 
-      if (itemHasSelectorData(item, qty)) {
-        result[item].qty = req.body[`${item}-${qty}`];
-      }
-      if (itemHasSelectorData(item, store)) {
-        result[item].store = req.body[`${item}-${store}`];
-      }
+  //   console.log('createOutputObj() >>>>>>>>>>>>>>', result);
+  //   console.log('req.body dump>>>>>>>>>>>>>>', req.body);
+  //   return result;
+  // }
+
+  // for each item the user selected (req.body.items),
+  //   gather up all the other key:value info about the item
+  //      add the info key suffix to an object with the value as the info value
+  //        function add keySuffix:value
+  //      func()
+  //    function take each item and make a new object
+
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  const userItems = req.body.items;
+  req.body.userOutput = {};
+
+  function addSelectorDataToItemOutput(
+    itemName,
+    objectToFilter,
+    objectToAddTo
+  ) {
+    let itemSuffixes = Object.keys(objectToFilter)
+      .filter(property => property.includes(`${itemName}-`))
+      .map(property => property.split('-')[property.split('-').length - 1]);
+
+    itemSuffixes.forEach(suffix => {
+      objectToAddTo[suffix] = objectToFilter[`${itemName}-${suffix}`];
     });
-
-    console.log('createOutputObj() >>>>>>>>>>>>>>', result);
-    return result;
+    return;
   }
+
+  userItems.forEach(item => {
+    req.body.userOutput[item] = {};
+    addSelectorDataToItemOutput(item, req.body, req.body.userOutput[item]);
+  });
+
+  next();
 
   // selectedItems.forEach(item => {
   //   if (itemHasSelectorData(item, 'qty')) {
@@ -111,9 +137,9 @@ exports.processFormData = (req, res, next) => {
   //   req.body.outputObj
   // );
 
-  req.body.outputObj = createOutputObj(selectedItems);
+  // req.body.outputObj = createOutputObj(selectedItems);
 
-  next();
+  // next();
 };
 
 exports.outputGroceryList = (req, res) => {
@@ -136,17 +162,20 @@ exports.outputGroceryList = (req, res) => {
   //       )
   //       .join('')}
   //   </ol>`;
-  let emailOutput = `
-    <ol>
-      ${Object.keys(sortedItems)
-        .map(
-          item =>
-            `<li>${item} (x${sortedItems[item].qty}) from ${
-              sortedItems[item].store
-            }</li>`
-        )
-        .join('')}
-    </ol>`;
+
+  let emailOutput = `hello world!!!`;
+
+  // let emailOutput = `;
+  //   <ol>
+  //     ${Object.keys(sortedItems)
+  //       .map(
+  //         item =>
+  //           `<li>${item} (x${sortedItems[item].qty}) from ${
+  //             sortedItems[item].store
+  //           }</li>`
+  //       )
+  //       .join('')}
+  //   </ol>`;
 
   const transporter = nodemailer.createTransport({
     host: 'smtpout.secureserver.net',
