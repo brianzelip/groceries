@@ -121,8 +121,11 @@ exports.outputGroceryList = (req, res) => {
   }
 
   let emailOutput = `
+    <!--
     ${tjsHTML}
     ${momsHTML}
+    -->
+    ${storesHTML}
     <ol class="list-reset">
       ${Object.keys(data)
         .map(
