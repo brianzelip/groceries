@@ -18,15 +18,28 @@ exports.site = {
   keywords: ['Node.js', 'Express.js', 'MongoDB', 'groceries']
 };
 
+const stores = [
+  'tj',
+  'moms',
+  'wineSource',
+  'farmersMarket',
+  'target',
+  'riteAid'
+];
+
+const storesDict = {
+  tj: 'TJ',
+  moms: 'Moms',
+  wineSource: 'Wine Source',
+  farmersMarket: 'Mkt',
+  target: 'Target',
+  riteAid: 'Rite Aid'
+};
+
+exports.stores = stores;
+exports.storesDict = storesDict;
+
 exports.atStores = obj => {
-  const stores = [
-    'tj',
-    'moms',
-    'wineSource',
-    'farmersMarket',
-    'target',
-    'riteAid'
-  ];
   const result = [];
   stores.forEach(store => {
     console.log(`${store.toUpperCase()} :: at loop start result = ${result}`);
