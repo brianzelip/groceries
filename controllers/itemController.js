@@ -98,6 +98,28 @@ exports.outputGroceryList = (req, res) => {
     )
     .join('');
 
+  let noStoresHTML = createNoStoreListHtml(itemsWithOutAStore(items), items);
+
+  function createNoStoreListHtml(arrayOfItemsWithNoStore, dataObj) {
+    return `
+      <h1>Other</h1>
+      <ol class="list-reset">
+        ${arrayOfItemsWithNoStore
+          .map(
+            itemName => `
+          <li>
+            <input type="checkbox" value="${itemName}" id="${itemName}" name="item">
+            <label for="${itemName}">${itemName}${
+              dataObj[itemName].qty ? ` (x${dataObj[itemName].qty})` : ''
+            }</label>
+          </li>
+        `
+          )
+          .join('')}
+      </ol>
+    `;
+  }
+
   function createStoreListHtml(
     storeName,
     arrayOfItemNamesAtStoreName,
@@ -122,7 +144,7 @@ exports.outputGroceryList = (req, res) => {
     `;
   }
 
-  let emailOutput = storesHTML;
+  let emailOutput = storesHTML + noStoresHTML;
 
   const transporter = nodemailer.createTransport({
     host: 'smtpout.secureserver.net',
