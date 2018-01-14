@@ -80,23 +80,8 @@ exports.processFormData = (req, res, next) => {
 };
 
 exports.outputGroceryList = (req, res) => {
-  // pass an array of objects to the rendered GroceryList view,
-  // where each object in the array represents an item selected by the user
-  // with the following data per selected item:
-  // 1. COMPLETE item name
-  // 2. COMPLETE the number of items to get from the store
-  // 3. COMPLETE item's area from the input value string
-  // 4. the store to get the item at
-
   const items = req.body.groceryListData.items;
   const stores = req.body.groceryListData.stores;
-
-  function itemsAtTJs(obj) {
-    return Object.keys(obj).filter(prop => obj[prop].store === 'tj');
-  }
-  function itemsAtMoms(obj) {
-    return Object.keys(obj).filter(prop => obj[prop].store === 'moms');
-  }
 
   function itemsAtAStore(obj, storeName) {
     return Object.keys(obj).filter(prop => obj[prop].store === storeName);
@@ -108,9 +93,6 @@ exports.outputGroceryList = (req, res) => {
         `${createStoreListHtml(store, itemsAtAStore(items, store), items)}`
     )
     .join('');
-
-  let tjsHTML = createStoreListHtml("Trader Joe's", itemsAtTJs(items), items);
-  let momsHTML = createStoreListHtml('Moms', itemsAtMoms(items), items);
 
   function createStoreListHtml(
     storeName,
@@ -136,24 +118,7 @@ exports.outputGroceryList = (req, res) => {
     `;
   }
 
-  let emailOutput = `
-    <!--
-    ${tjsHTML}
-    ${momsHTML}
-    -->
-    ${storesHTML}
-    <ol class="list-reset">
-      ${Object.keys(items)
-        .map(
-          prop => `<li>
-               <input type="checkbox" value="${prop}" id="${prop}" name="item">
-               <label for="${prop}">${prop}${
-            items[prop].qty ? ` (x${items[prop].qty})` : ''
-          }${items[prop].store ? ` @ ${items[prop].store}` : ''}</label>
-            </li>`
-        )
-        .join('')}
-    </ol>`;
+  let emailOutput = storesHTML;
 
   const transporter = nodemailer.createTransport({
     host: 'smtpout.secureserver.net',
