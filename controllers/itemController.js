@@ -54,6 +54,17 @@ exports.processFormData = (req, res, next) => {
     return;
   }
 
+  function getSelectedStores(obj) {
+    return Object.keys(obj)
+      .filter(key => key.endsWith('store'))
+      .reduce((acc, key) => {
+        if (acc.indexOf(obj[key]) === -1) {
+          acc.push(obj[key]);
+        }
+        return acc;
+      }, []);
+  }
+
   userSelectedItems.forEach(item => {
     req.body.groceryListData.items[item] = {};
     addSelectorDataToItemObject(
@@ -62,6 +73,8 @@ exports.processFormData = (req, res, next) => {
       req.body.groceryListData.items[item]
     );
   });
+
+  req.body.groceryListData.stores = getSelectedStores(req.body);
 
   next();
 };
