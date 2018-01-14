@@ -42,11 +42,9 @@ exports.storesDict = storesDict;
 exports.atStores = obj => {
   const result = [];
   stores.forEach(store => {
-    console.log(`${store.toUpperCase()} :: at loop start result = ${result}`);
     typeof obj[store] === 'boolean'
       ? obj[store] ? result.push(store) : null
       : obj[store].hasItem ? result.push(store) : null;
-    console.log(`at loop end result = ${result}`);
   });
   return result;
 };
