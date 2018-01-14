@@ -7,5 +7,5 @@ mixin itemStoresSelector(item)
           input(type="radio" name=`${item.slug}-store` id=`${item.slug}-${store}` value=`${store}`).item__storesSelector-storeInput
           label(for=`${item.slug}-${store}`).item__storesSelector-storeLabel= h.storesDict[store]
           if store === 'tj' || store === 'moms'
-            input(type="hidden" name=`${item.slug}-${store}-area` id=`${item.slug}-${store}-area` value=`${item.stores[store].itemArea}`)
+            input(type="hidden" name=`${item.slug}-${store}.itemArea` id=`${item.slug}-${store}-area` value=`${item.stores[store].itemArea}`)
 
