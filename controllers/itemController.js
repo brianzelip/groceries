@@ -34,7 +34,10 @@ exports.createItem = async (req, res) => {
 exports.processFormData = (req, res, next) => {
   const userSelectedItems = req.body.items;
 
-  req.body._data = {};
+  req.body.groceryListData = {
+    items: {},
+    stores: []
+  };
 
   function addSelectorDataToItemObject(
     itemName,
@@ -52,8 +55,12 @@ exports.processFormData = (req, res, next) => {
   }
 
   userSelectedItems.forEach(item => {
-    req.body._data[item] = {};
-    addSelectorDataToItemObject(item, req.body, req.body._data[item]);
+    req.body.groceryListData.items[item] = {};
+    addSelectorDataToItemObject(
+      item,
+      req.body,
+      req.body.groceryListData.items[item]
+    );
   });
 
   next();
@@ -68,7 +75,7 @@ exports.outputGroceryList = (req, res) => {
   // 3. COMPLETE item's area from the input value string
   // 4. the store to get the item at
 
-  const data = req.body._data;
+  const itemsData = req.body.groceryListData.items;
 
   function itemsAtTJs(obj) {
     return Object.keys(obj).filter(prop => obj[prop].store === 'tj');
@@ -83,12 +90,21 @@ exports.outputGroceryList = (req, res) => {
 
   let storesHTML = h.stores
     .map(
-      store => `${createStoreListHtml(store, itemsAtAStore(data, store), data)}`
+      store =>
+        `${createStoreListHtml(
+          store,
+          itemsAtAStore(itemsData, store),
+          itemsData
+        )}`
     )
     .join('');
 
-  let tjsHTML = createStoreListHtml("Trader Joe's", itemsAtTJs(data), data);
-  let momsHTML = createStoreListHtml('Moms', itemsAtMoms(data), data);
+  let tjsHTML = createStoreListHtml(
+    "Trader Joe's",
+    itemsAtTJs(itemsData),
+    itemsData
+  );
+  let momsHTML = createStoreListHtml('Moms', itemsAtMoms(itemsData), itemsData);
 
   function createStoreListHtml(
     storeName,
@@ -121,13 +137,13 @@ exports.outputGroceryList = (req, res) => {
     -->
     ${storesHTML}
     <ol class="list-reset">
-      ${Object.keys(data)
+      ${Object.keys(itemsData)
         .map(
           prop => `<li>
                <input type="checkbox" value="${prop}" id="${prop}" name="item">
                <label for="${prop}">${prop}${
-            data[prop].qty ? ` (x${data[prop].qty})` : ''
-          }${data[prop].store ? ` @ ${data[prop].store}` : ''}</label>
+            itemsData[prop].qty ? ` (x${itemsData[prop].qty})` : ''
+          }${itemsData[prop].store ? ` @ ${itemsData[prop].store}` : ''}</label>
             </li>`
         )
         .join('')}
