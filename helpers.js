@@ -23,6 +23,7 @@ const stores = [
   'moms',
   'wineSource',
   'farmersMarket',
+  'howl',
   'target',
   'riteAid'
 ];
@@ -32,6 +33,7 @@ const storesDict = {
   moms: 'Moms',
   wineSource: 'Wine Source',
   farmersMarket: 'Mkt',
+  howl: 'Howl',
   target: 'Target',
   riteAid: 'Rite Aid'
 };
@@ -39,12 +41,14 @@ const storesDict = {
 exports.stores = stores;
 exports.storesDict = storesDict;
 
-exports.atStores = obj => {
+exports.storesWithThisItem = obj => {
   const result = [];
   stores.forEach(store => {
-    typeof obj[store] === 'boolean'
-      ? obj[store] ? result.push(store) : null
-      : obj[store].hasItem ? result.push(store) : null;
+    console.log(`${obj.name.toUpperCase()}start :: results = ${result}`);
+    typeof obj.stores[store] === 'boolean'
+      ? obj.stores[store] ? result.push(store) : null
+      : obj.stores[store].hasItem ? result.push(store) : null;
+    console.log(`end :: results = ${result}`);
   });
   return result;
 };
