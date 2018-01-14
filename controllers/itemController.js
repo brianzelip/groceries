@@ -88,7 +88,8 @@ exports.outputGroceryList = (req, res) => {
   // 3. COMPLETE item's area from the input value string
   // 4. the store to get the item at
 
-  const itemsData = req.body.groceryListData.items;
+  const items = req.body.groceryListData.items;
+  const stores = req.body.groceryListData.stores;
 
   function itemsAtTJs(obj) {
     return Object.keys(obj).filter(prop => obj[prop].store === 'tj');
@@ -101,23 +102,15 @@ exports.outputGroceryList = (req, res) => {
     return Object.keys(obj).filter(prop => obj[prop].store === storeName);
   }
 
-  let storesHTML = h.stores
+  let storesHTML = stores
     .map(
       store =>
-        `${createStoreListHtml(
-          store,
-          itemsAtAStore(itemsData, store),
-          itemsData
-        )}`
+        `${createStoreListHtml(store, itemsAtAStore(items, store), items)}`
     )
     .join('');
 
-  let tjsHTML = createStoreListHtml(
-    "Trader Joe's",
-    itemsAtTJs(itemsData),
-    itemsData
-  );
-  let momsHTML = createStoreListHtml('Moms', itemsAtMoms(itemsData), itemsData);
+  let tjsHTML = createStoreListHtml("Trader Joe's", itemsAtTJs(items), items);
+  let momsHTML = createStoreListHtml('Moms', itemsAtMoms(items), items);
 
   function createStoreListHtml(
     storeName,
@@ -150,13 +143,13 @@ exports.outputGroceryList = (req, res) => {
     -->
     ${storesHTML}
     <ol class="list-reset">
-      ${Object.keys(itemsData)
+      ${Object.keys(items)
         .map(
           prop => `<li>
                <input type="checkbox" value="${prop}" id="${prop}" name="item">
                <label for="${prop}">${prop}${
-            itemsData[prop].qty ? ` (x${itemsData[prop].qty})` : ''
-          }${itemsData[prop].store ? ` @ ${itemsData[prop].store}` : ''}</label>
+            items[prop].qty ? ` (x${items[prop].qty})` : ''
+          }${items[prop].store ? ` @ ${items[prop].store}` : ''}</label>
             </li>`
         )
         .join('')}
