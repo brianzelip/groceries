@@ -11,5 +11,9 @@ mixin list(item)
           +itemQtySelector(item)
           if h.storesWithThisItem(item).length > 0
             +itemStoresSelector(item)
+          else
+            //- this is a hack to get the full row background color
+            //- on a selected item that has no stores to select
+            .item__storesSelector.col-4
     input(type="submit" value="Submit").mt2.col-12.btn.btn-primary.bg-blue.fw400
     pre= h.dump(items)
