@@ -87,6 +87,10 @@ exports.outputGroceryList = (req, res) => {
     return Object.keys(obj).filter(prop => obj[prop].store === storeName);
   }
 
+  function itemsWithOutAStore(obj) {
+    return Object.keys(obj).filter(prop => obj[prop].store === undefined);
+  }
+
   let storesHTML = stores
     .map(
       store =>
