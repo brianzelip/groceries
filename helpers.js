@@ -18,32 +18,21 @@ exports.site = {
   keywords: ['Node.js', 'Express.js', 'MongoDB', 'groceries']
 };
 
-const stores = [
-  'tj',
-  'moms',
-  'wineSource',
-  'farmersMarket',
-  'howl',
-  'target',
-  'riteAid'
-];
-
-const storesDict = {
-  tj: 'TJ',
-  moms: 'Moms',
-  wineSource: 'Wine Source',
-  farmersMarket: 'Mkt',
-  howl: 'Howl',
-  target: 'Target',
-  riteAid: 'Rite Aid'
+const stores = {
+  tj: { name: 'TJ', order: 0 },
+  moms: { name: 'Moms', order: 1 },
+  wineSource: { name: 'Wine Source', order: 2 },
+  howl: { name: 'Howl', order: 3 },
+  farmersMarket: { name: 'Farmers Market', order: 4 },
+  target: { name: 'Target', order: 5 },
+  riteAid: { name: 'Rite Aid', order: 6 }
 };
 
 exports.stores = stores;
-exports.storesDict = storesDict;
 
 exports.storesWithThisItem = obj => {
   const result = [];
-  stores.forEach(store => {
+  Object.keys(stores).forEach(store => {
     console.log(`${obj.name.toUpperCase()}start :: results = ${result}`);
     typeof obj.stores[store] === 'boolean'
       ? obj.stores[store] ? result.push(store) : null
