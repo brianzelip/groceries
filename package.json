@@ -1,16 +1,17 @@
 {
   "name": "groceries",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Family groceries web app.",
   "main": "start.js",
   "scripts": {
     "watch": "nodemon ./start.js --ignore public/",
-    "css":
-      "postcss -u postcss-custom-properties postcss-color-function postcss-import autoprefixer cssnano -o public/css/groceries.min.css public/css/groceries.css --no-map --watch",
-    "start":
-      "concurrently \"npm run watch\" \"npm run css\" --names \"😈,📦\" --prefix name"
+    "css": "postcss -u postcss-custom-properties postcss-color-function postcss-import autoprefixer cssnano -o public/css/groceries.min.css public/css/groceries.css --no-map --watch",
+    "start": "concurrently \"npm run watch\" \"npm run css\" --names \"😈,📦\" --prefix name"
   },
-  "keywords": ["groceries", "javascript"],
+  "keywords": [
+    "groceries",
+    "javascript"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/brianzelip/groceries.git"
