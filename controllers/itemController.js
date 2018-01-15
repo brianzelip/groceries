@@ -36,7 +36,8 @@ exports.processFormData = (req, res, next) => {
 
   req.body.groceryListData = {
     items: {},
-    stores: []
+    stores: [],
+    emailTo: []
   };
 
   function addSelectorDataToItemObject(
@@ -97,6 +98,7 @@ exports.processFormData = (req, res, next) => {
 exports.outputGroceryList = (req, res) => {
   const items = req.body.groceryListData.items;
   const stores = req.body.groceryListData.stores;
+  const emailTo = req.body.groceryListData.emailTo;
 
   function itemsAtAStore(obj, storeName) {
     let storeItems = Object.keys(obj).filter(
@@ -205,7 +207,7 @@ exports.outputGroceryList = (req, res) => {
 
   let mailOptions = {
     from: '"🧀 A&B Groceries 🍼" <holler@abbieandbrian.us>',
-    to: 'bzelip@gmail.com',
+    to: emailTo,
     subject: 'grocery list',
     text:
       'Sorry, at the moment there is nothing to see here in the plain text version :(JSON.stringify(outputObj, null, 2)',
