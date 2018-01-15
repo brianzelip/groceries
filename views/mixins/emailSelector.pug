@@ -1,0 +1,6 @@
+mixin emailSelector()
+  span.ml2.mono.red email list to:
+  input(type="checkbox" name="emailTo" id="emailAZ" value=`${process.env.AZ}`).form__emailSelector-input
+  label(for="emailAZ").form__emailSelector-emailLabel a
+  input(type="checkbox" name="emailTo" id="emailBZ" value=`${process.env.BZ}`).form__emailSelector-input
+  label(for="emailBZ").form__emailSelector-emailLabel b
