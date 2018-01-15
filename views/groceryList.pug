@@ -1,12 +1,6 @@
 extends default
 
 block content
-  a(href="/").btn Go back to list
-  h3 req.body dump
-  pre= h.dump(formData)
-  hr
-  h3 emailOutput dump
-  pre= h.dump(emailOutput)
-  hr
-  h3 emailOutput html
+  h1 Your grocery list was emailed!
+  h2 Here's what the email looks like:
   div!= emailOutput
