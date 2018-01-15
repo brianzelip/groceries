@@ -76,7 +76,8 @@ exports.processFormData = (req, res, next) => {
           acc.push(obj[key]);
         }
         return acc;
-      }, []);
+      }, [])
+      .sort((a, b) => h.stores[a].order - h.stores[b].order);
   }
 
   userSelectedItems.forEach(item => {
@@ -156,7 +157,7 @@ exports.outputGroceryList = (req, res) => {
     dataObj
   ) {
     return `
-      <h1>${storeName}</h1>
+      <h1>${h.stores[storeName].name}</h1>
       <ol class="list-reset">
         ${
           storeName === 'tj' || storeName === 'moms'
