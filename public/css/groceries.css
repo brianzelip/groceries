@@ -63,6 +63,14 @@ body,
 .justify-center {
   justify-content: center;
 }
+.justify-end {
+  justify-content: flex-end;
+}
+@media (min-width: 40em) {
+  .sm-justify-end {
+    justify-content: flex-end;
+  }
+}
 
 .align-self-start {
   align-self: flex-start;
