@@ -1,6 +1,14 @@
 extends default
 
 block content
-  h1 Your grocery list was emailed!
-  h2 Here's what the email looks like:
+  h1 It worked 🎉
+  h2 Here's what the email sent to 
+    if h.getEmailRecipients(formData.emailTo).length === 1
+      span= `${h.getEmailRecipients(formData.emailTo)} `
+    else if h.getEmailRecipients(formData.emailTo).length === 2
+      span= `${h.getEmailRecipients(formData.emailTo)[0]} & ${h.getEmailRecipients(formData.emailTo)[1]} `
+    span looks like:
   div!= emailOutput
+  hr
+  h2 h.dump(req.body)
+  pre= h.dump(formData)
