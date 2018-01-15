@@ -41,3 +41,24 @@ exports.storesWithThisItem = obj => {
   });
   return result;
 };
+
+const emailDict = {
+  [process.env.AZ]: 'Abbie',
+  [process.env.BZ]: 'Brian'
+};
+
+exports.emailDict = emailDict;
+
+exports.getEmailRecipients = variable => {
+  let result = [];
+  if (typeof variable === 'string') {
+    result.push(emailDict[variable]);
+  } else if (Array.isArray(variable)) {
+    variable.forEach(item => {
+      result.push(emailDict[item]);
+    });
+  } else {
+    return "SORRY SOMETHING's GONE TERRIBLY WRONG!";
+  }
+  return result;
+};
