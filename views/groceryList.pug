@@ -7,8 +7,8 @@ block content
       span= `${h.getEmailRecipients(formData.emailTo)} `
     else if h.getEmailRecipients(formData.emailTo).length === 2
       span= `${h.getEmailRecipients(formData.emailTo)[0]} & ${h.getEmailRecipients(formData.emailTo)[1]} `
+    else
+      span 🐭 
     span looks like:
-  div!= emailOutput
   hr
-  h2 h.dump(req.body)
-  pre= h.dump(formData)
+  div!= emailOutput
