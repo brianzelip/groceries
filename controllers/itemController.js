@@ -133,8 +133,8 @@ exports.outputGroceryList = (req, res) => {
 
   function createNoStoreListHtml(arrayOfItemsWithNoStore, dataObj) {
     return `
-      <h1>Other</h1>
-      <ol class="list-reset">
+      <h1 style="font-size: 1.25rem; font-weight: 700;">Other</h1>
+      <ol style="padding-left: 0; list-style: none;">
         ${arrayOfItemsWithNoStore
           .map(
             itemName => `
@@ -157,8 +157,10 @@ exports.outputGroceryList = (req, res) => {
     dataObj
   ) {
     return `
-      <h1>${h.stores[storeName].name}</h1>
-      <ol class="list-reset">
+      <h1 style="font-size: 1.25rem; font-weight: 700;">${
+        h.stores[storeName].name
+      }</h1>
+      <ol style="padding-left: 0; list-style: none;">
         ${
           storeName === 'tj' || storeName === 'moms'
             ? arrayOfItemNamesAtStoreName
