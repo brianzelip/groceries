@@ -1,6 +1,7 @@
 include itemCheckboxAndText
 include itemQtySelector
 include itemStoresSelector
+include emailSelector
 mixin list(item)
 
   form(action="/submit" method="POST")
@@ -10,4 +11,7 @@ mixin list(item)
           +itemCheckboxAndText(item)
           +itemQtySelector(item)
           +itemStoresSelector(item)
-    input(type="submit" value="Submit").mt2.col-12.btn.btn-primary.bg-blue.fw400
+    .controls.flex.flex-center.mt2
+      input(type="submit" value="Submit").btn.btn-primary.bg-blue.fw400
+      +emailSelector
+
