@@ -36,8 +36,7 @@ exports.processFormData = (req, res, next) => {
 
   req.body.groceryListData = {
     items: {},
-    stores: [],
-    emailTo: []
+    stores: []
   };
 
   function addSelectorDataToItemObject(
@@ -98,7 +97,7 @@ exports.processFormData = (req, res, next) => {
 exports.outputGroceryList = (req, res) => {
   const items = req.body.groceryListData.items;
   const stores = req.body.groceryListData.stores;
-  const emailTo = req.body.groceryListData.emailTo;
+  const emailTo = req.body.emailTo;
 
   function itemsAtAStore(obj, storeName) {
     let storeItems = Object.keys(obj).filter(
@@ -124,14 +123,24 @@ exports.outputGroceryList = (req, res) => {
     return Object.keys(obj).filter(prop => obj[prop].store === undefined);
   }
 
-  let storesHTML = stores
-    .map(
-      store =>
-        `${createStoreListHtml(store, itemsAtAStore(items, store), items)}`
-    )
-    .join('');
+  let storesHTML =
+    stores.length > 0
+      ? stores
+          .map(
+            store =>
+              `${createStoreListHtml(
+                store,
+                itemsAtAStore(items, store),
+                items
+              )}`
+          )
+          .join('')
+      : '';
 
-  let noStoresHTML = createNoStoreListHtml(itemsWithOutAStore(items), items);
+  let noStoresHTML =
+    itemsWithOutAStore(items).length > 0
+      ? createNoStoreListHtml(itemsWithOutAStore(items), items)
+      : '';
 
   function createNoStoreListHtml(arrayOfItemsWithNoStore, dataObj) {
     return `
