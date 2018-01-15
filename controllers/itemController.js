@@ -48,8 +48,22 @@ exports.processFormData = (req, res, next) => {
       .filter(property => property.startsWith(`${itemName}-`))
       .map(property => property.split('-')[property.split('-').length - 1]);
 
+    // if an item is available at TJ and Moms, there are possibly 2 ItemArea
+    // suffixes, even though there is only 1 possible main store to get the
+    // item from on any given trip. So we want to include only the ItemArea
+    // suffix for the main store if it exists. This way we create
+    // a groceryListData object only with needed info, nothing more.
     itemSuffixes.forEach(suffix => {
-      objectToAddTo[suffix] = objectToFilter[`${itemName}-${suffix}`];
+      if (!suffix.includes('ItemArea')) {
+        objectToAddTo[suffix] = objectToFilter[`${itemName}-${suffix}`];
+      } else if (
+        // if there's a store for this item, AND a ${store}ItemArea suffix
+        // create a storeArea property for this info
+        objectToFilter[`${itemName}-store`] &&
+        suffix.includes(objectToFilter[`${itemName}-store`])
+      ) {
+        objectToAddTo.storeArea = objectToFilter[`${itemName}-${suffix}`];
+      }
     });
     return;
   }
