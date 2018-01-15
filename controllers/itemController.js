@@ -98,7 +98,23 @@ exports.outputGroceryList = (req, res) => {
   const stores = req.body.groceryListData.stores;
 
   function itemsAtAStore(obj, storeName) {
-    return Object.keys(obj).filter(prop => obj[prop].store === storeName);
+    let storeItems = Object.keys(obj).filter(
+      prop => obj[prop].store === storeName
+    );
+
+    let storeItemsWithLocation = storeItems
+      .filter(item => obj[item].storeArea !== undefined)
+      .sort((a, b) => obj[a].storeArea - obj[b].storeArea);
+
+    let storeItemsWithNoLocation = storeItems
+      .filter(item => obj[item].storeArea === undefined)
+      .sort();
+
+    let sortedStoreItems = storeItemsWithLocation.concat(
+      storeItemsWithNoLocation
+    );
+
+    return sortedStoreItems;
   }
 
   function itemsWithOutAStore(obj) {
