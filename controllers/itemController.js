@@ -45,7 +45,7 @@ exports.processFormData = (req, res, next) => {
     objectToAddTo
   ) {
     let itemSuffixes = Object.keys(objectToFilter)
-      .filter(property => property.includes(`${itemName}-`))
+      .filter(property => property.startsWith(`${itemName}-`))
       .map(property => property.split('-')[property.split('-').length - 1]);
 
     itemSuffixes.forEach(suffix => {
@@ -128,18 +128,33 @@ exports.outputGroceryList = (req, res) => {
     return `
       <h1>${storeName}</h1>
       <ol class="list-reset">
-        ${arrayOfItemNamesAtStoreName
-          .map(
-            itemName => `
+        ${
+          storeName === 'tj' || storeName === 'moms'
+            ? arrayOfItemNamesAtStoreName
+                .map(
+                  itemName => `
+                    <li>
+                      <input type="checkbox" value="${itemName}" id="${itemName}" name="item">
+                      <label for="${itemName}">${itemName}${
+                    dataObj[itemName].qty ? ` (x${dataObj[itemName].qty})` : ''
+                  }</label>
+                    </li>
+                  `
+                )
+                .join('')
+            : arrayOfItemNamesAtStoreName
+                .map(
+                  itemName => `
             <li>
               <input type="checkbox" value="${itemName}" id="${itemName}" name="item">
               <label for="${itemName}">${itemName}${
-              dataObj[itemName].qty ? ` (x${dataObj[itemName].qty})` : ''
-            }</label>
+                    dataObj[itemName].qty ? ` (x${dataObj[itemName].qty})` : ''
+                  }</label>
             </li>
           `
-          )
-          .join('')}
+                )
+                .join('')
+        }
       </ol>
     `;
   }
