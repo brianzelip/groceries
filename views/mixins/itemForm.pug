@@ -4,10 +4,22 @@ mixin itemForm(item = {})
     //- In this way, this same template can be used for creating a new item,
     //- or editing an existing item. If there is no _id property on
     //- the item object, then the action will go to the route for /add/
-    label(for="name") Name
+    label(for="name").block Name
     input(type="text" name="name" value=item.name)
-    label(for="area") Area
-    input(type="text" name="area" value=item.area)
-    input.button(type="submit" value="Save →")
+    .mt2 Stores:
+      .flex.flex-center
+        each store in Object.keys(h.stores)
+          input(type="checkbox" name="stores" id=`stores-checkbox-${store}` value=`${store}`)
+          label(for=`stores-checkbox-${store}`).mr2= h.stores[store].name
+    .mt2 Default store:
+      .flex.flex-center
+        each store in Object.keys(h.stores)
+          input(type="radio" name="default-store" id=`default-radio-${store}` value=`${store}`)
+          label(for=`default-radio-${store}`).mr2= h.stores[store].name
+    label(for="area").block.mt2 TJ Area
+    input(type="number" name="area" value=item.area).block
+    label(for="area").block.mt2 Moms Area
+    input(type="number" name="area" value=item.area).block
+    input.mt2.btn.btn-primary(type="submit" value="Save →")
 
   //- mixins can accept a parameter, in this case the empty object `item` by default, and which you can pass from the template that calls the mixin an object with whatever data; the data of which can be used, in this case `#{item.name}`
