@@ -34,11 +34,9 @@ exports.stores = stores;
 exports.storesWithThisItem = obj => {
   const result = [];
   Object.keys(stores).forEach(store => {
-    console.log(`${obj.name.toUpperCase()}start :: results = ${result}`);
     typeof obj.stores[store] === 'boolean'
       ? obj.stores[store] ? result.push(store) : null
       : obj.stores[store].hasItem ? result.push(store) : null;
-    console.log(`end :: results = ${result}`);
   });
   return result;
 };
