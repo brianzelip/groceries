@@ -48,6 +48,10 @@ body,
   min-height: 100vh;
 }
 
+body {
+  color: var(--blue);
+}
+
 .bg-light-gray {
   background-color: #efefef;
 }
