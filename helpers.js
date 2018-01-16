@@ -15,6 +15,7 @@ exports.site = {
   author: 'Brian Zelip',
   authorUri: 'http://zelip.me',
   description: `Family groceries web app.`,
+  byline: 'Make a list and send it',
   keywords: ['Node.js', 'Express.js', 'MongoDB', 'groceries']
 };
 
