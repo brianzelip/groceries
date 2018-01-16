@@ -72,6 +72,10 @@ body,
   }
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .align-self-start {
   align-self: flex-start;
 }
@@ -330,6 +334,7 @@ a:hover {
   font-family: monospace;
 }
 
+.form__emailSelector,
 .item__storesSelector,
 .item__qtySelector {
   display: none;
@@ -338,11 +343,16 @@ a:hover {
   padding: 0 1rem;
 }
 
+.form__emailSelector,
 .item__hidden-input:checked ~ .item__storesSelector,
 .item__hidden-input:checked ~ .item__qtySelector {
   display: flex;
 }
 
+.form__emailSelector-emailWrapper {
+  position: relative;
+  margin: 0 0.75rem;
+}
 .item__storesSelector-storeWrapper {
   position: relative;
   margin: 0 0.25rem;
@@ -353,6 +363,7 @@ a:hover {
   margin: 0 0.25rem;
 }
 
+.form__emailSelector-input,
 .item__storesSelector-storeInput,
 .item__qtySelector-numInput {
   position: absolute;
@@ -366,6 +377,7 @@ a:hover {
   cursor: pointer;
 }
 
+.form__emailSelector-emailLabel,
 .item__storesSelector-storeLabel,
 .item__qtySelector-numLabel {
   text-align: center;
@@ -377,6 +389,8 @@ a:hover {
   font-size: 16px;
 }
 
+.form__emailSelector-input:hover + .form__emailSelector-emailLabel,
+.form__emailSelector-input:checked + .form__emailSelector-emailLabel,
 .item__storesSelector-storeInput:hover + .item__storesSelector-storeLabel,
 .item__storesSelector-storeInput:checked + .item__storesSelector-storeLabel,
 .item__qtySelector-numInput:hover + .item__qtySelector-numLabel,
