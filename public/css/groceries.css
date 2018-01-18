@@ -138,6 +138,12 @@ body {
   .sm-p2 {
     padding: 1rem;
   }
+  .sm-mb2 {
+    margin-bottom: 1rem;
+  }
+  .sm-ml1 {
+    margin-left: 0.5rem;
+  }
 }
 
 @media (min-width: 52em) {
