@@ -1,11 +1,10 @@
 mixin emailSelector()
-  fieldset.form__emailSelector
-    span.mr1.p0.mono.red email list to:
+  .form__emailSelector
     input(type="checkbox" name="emailTo" id="emailAZ" value=`${process.env.AZ}`).form__emailSelector--hidden-input
     label(for="emailAZ").form__emailSelector--label
       span.form__emailSelector--checkbox
-      span.form__emailSelector--text abbie
+      span.form__emailSelector--text email abbie
     input(type="checkbox" name="emailTo" id="emailBZ" value=`${process.env.BZ}`).form__emailSelector--hidden-input
     label(for="emailBZ").form__emailSelector--label
       span.form__emailSelector--checkbox
-      span.form__emailSelector--text brian
+      span.form__emailSelector--text email brian
