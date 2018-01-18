@@ -5,7 +5,7 @@ mixin itemStoresSelector(item)
       each store in h.storesWithThisItem(item)
         .item__storesSelector-storeWrapper
           input(type="radio" name=`${item.slug}-store` id=`${item.slug}-${store}` value=`${store}`).item__storesSelector-storeInput
-          label(for=`${item.slug}-${store}`).item__storesSelector-storeLabel= h.stores[store].name
+          label(for=`${item.slug}-${store}`).item__storesSelector-storeLabel= h.stores[store].name.toLowerCase()
           if ((store === 'tj' || store === 'moms') && item.stores[store].itemArea)
             input(type="hidden" name=`${item.slug}-${store}ItemArea` id=`${item.slug}-${store}-area` value=`${item.stores[store].itemArea}`)
 
