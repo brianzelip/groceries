@@ -1,11 +1,11 @@
 mixin itemStoresSelector(item)
   .item__storesSelector.col-4
-    if h.storesWithThisItem(item).length > 0
+    if item.stores.length > 0
       span.mr1.mono.red from:
-      each store in h.storesWithThisItem(item)
+      each store in item.stores
         .item__storesSelector-storeWrapper
           input(type="radio" name=`${item.slug}-store` id=`${item.slug}-${store}` value=`${store}`).item__storesSelector-storeInput
           label(for=`${item.slug}-${store}`).item__storesSelector-storeLabel= h.stores[store].name.toLowerCase()
-          if ((store === 'tj' || store === 'moms') && item.stores[store].itemArea)
-            input(type="hidden" name=`${item.slug}-${store}ItemArea` id=`${item.slug}-${store}-area` value=`${item.stores[store].itemArea}`)
+          if (item[`${store}Area`] && typeof item[`${store}Area`] === 'number')
+            input(type="hidden" name=`${item.slug}-${store}Area` id=`${item.slug}-${store}Area` value=(item[`${store}Area`]))
 
