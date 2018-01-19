@@ -5,21 +5,22 @@ mixin itemForm(item = {})
     //- or editing an existing item. If there is no _id property on
     //- the item object, then the action will go to the route for /add/
     label(for="name").block name
-    input(type="text" name="name" value=item.name).field
-    .mt2 stores:
+      span.red *
+    input(type="text" name="name" value=item.name).col-12.sm-col-8.md-col-6.field
+    .mt2 stores where we get this item:
       .flex.flex-center
         each store in Object.keys(h.stores)
           input(type="checkbox" name="stores" id=`stores-checkbox-${store}` value=`${store}`)
           label(for=`stores-checkbox-${store}`).mr2= h.stores[store].name
-    .mt2 default store:
+    .mt2 our default store of choice:
       .flex.flex-center
         each store in Object.keys(h.stores)
           input(type="radio" name="default-store" id=`default-radio-${store}` value=`${store}`)
           label(for=`default-radio-${store}`).mr2= h.stores[store].name
     label(for="area").block.mt2 TJ area
-    input(type="number" name="area" value=item.area).block.field
+    input(type="number" name="area" value=item.area).col-3.sm-col-2.md-col-1.block.field
     label(for="area").block.mt2 Moms area
-    input(type="number" name="area" value=item.area).block.field
+    input(type="number" name="area" value=item.area).col-3.sm-col-2.md-col-1.block.field
     input.mt2.btn.btn-primary.bg-blue.fw400(type="submit" value="Save →")
 
   //- mixins can accept a parameter, in this case the empty object `item` by default, and which you can pass from the template that calls the mixin an object with whatever data; the data of which can be used, in this case `#{item.name}`
