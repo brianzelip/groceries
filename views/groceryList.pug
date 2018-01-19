@@ -1,10 +1,10 @@
 extends default
 
 block content
-  h1 It worked 🎉
-  h2 Here's what the email sent to 
+  h2.fw400 it worked 🎉
+  h3.fw400 here's what the email sent to 
     if h.getEmailRecipients(formData.emailTo).length === 1
-      span= `${h.getEmailRecipients(formData.emailTo)} `
+      span= `${h.getEmailRecipients(formData.emailTo)[0].toLowerCase()} `
     else if h.getEmailRecipients(formData.emailTo).length === 2
       span= `${h.getEmailRecipients(formData.emailTo)[0]} & ${h.getEmailRecipients(formData.emailTo)[1]} `
     else
