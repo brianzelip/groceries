@@ -28,7 +28,7 @@ exports.createItem = async (req, res) => {
     'success',
     `Successfully added <strong>${item.name}</strong> to the list!`
   );
-  res.redirect('/');
+  res.redirect('/add');
 };
 
 exports.processFormData = (req, res, next) => {
@@ -54,7 +54,7 @@ exports.processFormData = (req, res, next) => {
     // suffix for the main store if it exists. This way we create
     // a groceryListData object only with needed info, nothing more.
     itemSuffixes.forEach(suffix => {
-      if (!suffix.includes('ItemArea')) {
+      if (!suffix.includes('Area')) {
         objectToAddTo[suffix] = objectToFilter[`${itemName}-${suffix}`];
       } else if (
         // if there's a store for this item, AND a ${store}ItemArea suffix
