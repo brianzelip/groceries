@@ -5,7 +5,8 @@ html
     header.container.sm-flex.flex-center.flex-wrap
       h1.mb0.sm-mb2.mt0.blue
         a(href="/").fw400= h.site.name
-      h2.mt0.sm-ml1.h3.fw400.blue= h.site.byline.toLowerCase()
+      h2.mt0.sm-ml1.h3.fw400.blue
+        a(href="/").fw400= h.site.byline.toLowerCase()
     block messages
       .container
         if locals.flashes
