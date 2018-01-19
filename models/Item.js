@@ -10,22 +10,10 @@ const itemSchema = new mongoose.Schema({
     required: 'Please enter an item name!'
   },
   slug: String,
-  stores: {
-    tj: {
-      hasItem: Boolean,
-      itemArea: Number
-    },
-    moms: {
-      hasItem: Boolean,
-      itemArea: Number
-    },
-    wineSource: Boolean,
-    farmersMarket: Boolean,
-    howl: Boolean,
-    target: Boolean,
-    riteAid: Boolean,
-    default: String
-  }
+  stores: [String],
+  tjArea: Number,
+  momsArea: Number,
+  defaultStore: String
 });
 
 itemSchema.pre('save', function(next) {
