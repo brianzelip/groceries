@@ -15,7 +15,7 @@ mixin itemForm(item = {})
     .mt2 our default store of choice:
       .flex.flex-center
         each store in Object.keys(h.stores)
-          input(type="radio" name="default-store" id=`radio-${store}` value=store checked=((item.defaultStore && item.defaultStore === store)) || false)
+          input(type="radio" name="defaultStore" id=`radio-${store}` value=store checked=((item.defaultStore && item.defaultStore === store)) || false)
           label(for=`radio-${store}`).mr2= h.stores[store].name
     label(for="tj-area").block.mt2 TJ area
     input(type="number" id="tj-area" name="tjArea").col-3.sm-col-2.md-col-1.block.field
