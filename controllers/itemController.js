@@ -144,8 +144,8 @@ exports.outputGroceryList = (req, res) => {
 
   function createNoStoreListHtml(arrayOfItemsWithNoStore, dataObj) {
     return `
-      <h1 style="font-size: 1.25rem; font-weight: 700;">Other</h1>
-      <ol style="padding-left: 0; list-style: none;">
+      <h1 style="font-size: 1.25rem; font-weight: 400;">other</h1>
+      <ol style="margin-bottom: 2rem; padding-left: 0; list-style: none;">
         ${arrayOfItemsWithNoStore
           .map(
             itemName => `
@@ -168,10 +168,10 @@ exports.outputGroceryList = (req, res) => {
     dataObj
   ) {
     return `
-      <h1 style="font-size: 1.25rem; font-weight: 700;">${
-        h.stores[storeName].name
-      }</h1>
-      <ol style="padding-left: 0; list-style: none;">
+      <h1 style="font-size: 1.25rem; font-weight: 400;">${h.stores[
+        storeName
+      ].name.toLowerCase()}</h1>
+      <ol style="margin-bottom: 2rem; padding-left: 0; list-style: none;">
         ${
           storeName === 'tj' || storeName === 'moms'
             ? arrayOfItemNamesAtStoreName
