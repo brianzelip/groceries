@@ -8,8 +8,8 @@ html
       h2.mt0.sm-ml1.h3.fw400.blue
         a(href="/").fw400= h.site.byline.toLowerCase()
     block messages
-      .container
-        if locals.flashes
+      if locals.flashes && Object.keys(locals.flashes).length > 0
+        .container
           //- pre= h.dump(locals.flashes)
           - const categories = Object.keys(locals.flashes)
           each category in categories
