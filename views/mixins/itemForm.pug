@@ -23,4 +23,22 @@ mixin itemForm(item = {})
     input(type="number" id="moms-area" name="momsArea" disabled=h.hasStoreArea(item, store)).col-3.sm-col-2.md-col-1.block.field
     input.mt2.btn.btn-primary.bg-blue.fw400(type="submit" value="Save →")
 
+    script.
+      let tjStore = document.getElementById('checkbox-tj');
+      let momsStore = document.getElementById('checkbox-moms');
+      let tjArea = document.querySelector('input[name="tjArea"]');
+      let momsArea = document.querySelector('input[name="momsArea"]');
+      let tjDisabled = tjArea.getAttribute('disabled');
+      
+      const mainStores = [tjStore, momsStore];
+
+      mainStores.forEach(function(store) {
+        store.addEventListener('change', function() {
+          let storeArea = document.querySelector(`input[name="${this.value}Area"]`);
+          return (this.checked === true)
+            ? storeArea.disabled = null
+            : storeArea.disabled = 'disabled'
+        })
+      });
+
   //- mixins can accept a parameter, in this case the empty object `item` by default, and which you can pass from the template that calls the mixin an object with whatever data; the data of which can be used, in this case `#{item.name}`
