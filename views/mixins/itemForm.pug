@@ -17,10 +17,27 @@ mixin itemForm(item = {})
         each store in Object.keys(h.stores)
           input(type="radio" name="defaultStore" id=`radio-${store}` value=store checked=((item.defaultStore && item.defaultStore === store)) || false)
           label(for=`radio-${store}`).mr2= h.stores[store].name
-    label(for="tj-area").block.mt2 TJ area
-    input(type="number" id="tj-area" name="tjArea" disabled=h.hasStoreArea(item, store)).col-3.sm-col-2.md-col-1.block.field
-    label(for="moms-area").block.mt2 Moms area
-    input(type="number" id="moms-area" name="momsArea" disabled=h.hasStoreArea(item, store)).col-3.sm-col-2.md-col-1.block.field
+    .flex.mt2
+      .flex.flex-column
+        label(for="tj-area").block TJ area
+        input(style="width: 90px;" type="number" id="tj-area" name="tjArea" disabled=h.hasStoreArea(item, store)).block.field
+        label(for="moms-area").block.mt2 Moms area
+        input(style="width: 90px;" type="number" id="moms-area" name="momsArea" disabled=h.hasStoreArea(item, store)).block.field
+      .flex.flex-auto.ml2
+        each store in h.storesAreas
+          div(id=`${store[0].split(' ')[0].toLowerCase()}-areas-ref` hidden=h.hasStoreArea(item, store)).col-6.px2
+            .overflow-scroll
+              table(class="table-light overflow-hidden border rounded").mono
+                caption= store[0]
+                thead.bg-grey
+                  tr
+                    th(scope="col").fw400 area
+                    th(scope="col").fw400 items
+                tbody.mono
+                  each key in Object.keys(store[1]).sort()
+                    tr
+                      td= key
+                      td= store[1][key]
     input.mt2.btn.btn-primary.bg-blue.fw400(type="submit" value="Save →")
 
     script.
@@ -28,16 +45,18 @@ mixin itemForm(item = {})
       let momsStore = document.getElementById('checkbox-moms');
       let tjArea = document.querySelector('input[name="tjArea"]');
       let momsArea = document.querySelector('input[name="momsArea"]');
-      let tjDisabled = tjArea.getAttribute('disabled');
+      let tjAreasRef = document.getElementById('tj-areas-ref');
+      let momsAreasRef = document.getElementById('moms-areas-ref');
       
       const mainStores = [tjStore, momsStore];
 
       mainStores.forEach(function(store) {
         store.addEventListener('change', function() {
           let storeArea = document.querySelector(`input[name="${this.value}Area"]`);
+          let storeAreaRef = document.getElementById(`${this.value}-areas-ref`);
           return (this.checked === true)
-            ? storeArea.disabled = null
-            : storeArea.disabled = 'disabled'
+            ? (storeArea.disabled = null, storeAreaRef.hidden = false)
+            : (storeArea.disabled = 'disabled', storeAreaRef.hidden = true)
         })
       });
 
