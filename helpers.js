@@ -28,8 +28,30 @@ const stores = {
   target: { name: 'Target', order: 5 },
   riteAid: { name: 'Rite Aid', order: 6 }
 };
-
 exports.stores = stores;
+
+const tjAreas = {
+  '1': 'raw nuts, fruit, vegetables',
+  '2': 'hummus, eggs, soy milk, oj, cream cheese, sour cream',
+  '3':
+    'frozen pizza, frozen stuff, cookies and chocolate covered stuff, frozen fish, etc',
+  '4': 'crackers, cereal, tortilla chips, cheetos',
+  '5': 'whole milk, cream, butter',
+  '6':
+    'dog biscuits, broth, pasta, pasta sauce, sponges, tooth paste, tissue, syrup, tahini, soy, olive oil, etc',
+  '7': 'bread, raw meat, cheese, water'
+};
+exports.tjAreas = tjAreas;
+
+const momsAreas = {
+  '1': 'vegetables, fruit, raw meat',
+  '2': 'yougurt, milk, cream, cheese, pickles, bulk granola, bulk beans',
+  '3': 'bread, dried fruit'
+};
+exports.momsAreas = momsAreas;
+
+const storesAreas = [['TJ areas', tjAreas], ['Moms areas', momsAreas]];
+exports.storesAreas = storesAreas;
 
 exports.storesWithThisItem = obj => {
   const result = [];
