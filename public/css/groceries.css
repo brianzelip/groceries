@@ -195,6 +195,7 @@ input[type='week'] {
   --dark-blue: #2978ad;
   --red: #ca34db;
   --red-muted: #edbbf2;
+  --grey: #ebedef;
 
   /* flashes */
   --color-green: #45db34;
@@ -245,6 +246,12 @@ input[type='week'] {
 }
 .bg-blue {
   background-color: var(--blue);
+}
+.grey {
+  color: var(--grey);
+}
+.bg-grey {
+  background-color: var(--grey);
 }
 
 .bg-success {
@@ -417,6 +424,9 @@ a:hover {
 
 .fw400 {
   font-weight: 400;
+}
+.fw700 {
+  font-weight: 700;
 }
 
 /* emailSelector checkboxes */
