@@ -1,4 +1,6 @@
 mixin itemCheckboxAndText(item)
+  a(href="/edit").w-16px.flex.flex-center.mx2.grey
+    != h.icon('edit-solid')
   input(class="item__hidden-input" type="checkbox" id=`${item.slug}` name="items" value=`${item.slug}`)
   label(for=`${item.slug}` class="item__label col-5")
     span(class="item__checkbox")
