@@ -258,6 +258,10 @@ input[type='week'] {
   color: var(--red-muted);
 }
 
+.green {
+  color: var(--color-green);
+}
+
 a {
   color: var(--blue);
 }
