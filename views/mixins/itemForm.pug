@@ -1,9 +1,5 @@
 mixin itemForm(item = {})
   form(action=(item._id ? `/edit/${item._id}` : `/add`) method="POST")
-    //- the /${item._id || ''} was added to double up the use of this template.
-    //- In this way, this same template can be used for creating a new item,
-    //- or editing an existing item. If there is no _id property on
-    //- the item object, then the action will go to the route for /add/
     label(for="name").block name
       span.red *
     input(type="text" name="name" id="name" value=item.name).col-12.sm-col-8.md-col-6.field
@@ -22,7 +18,7 @@ mixin itemForm(item = {})
         - const storesWithAreas = {tj: 'TJ', moms: 'Moms'}
         each store in Object.keys(storesWithAreas)
           label(for=`${store}-area`).block #{storesWithAreas[store]} area
-          input(type="number" id=`${store}-area` name=`${store}Area` disabled=(h.itemHasStore(item, store) ? false : true) value=(item[`${store}Area`])).block.field.w-90px
+          input(type="number" id=`${store}-area` name=`${store}Area` disabled=(h.itemHasStore(item, store) ? false : true) value=(item[`${store}Area`])).block.field.w-90px.mb2
       .flex.flex-auto.ml2
         each store in h.storesAreas
           - let caption = store[0];
