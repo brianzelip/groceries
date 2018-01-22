@@ -8,7 +8,7 @@ html
           a(href="/").fw400= h.site.name
         h2.mt0.mb0.sm-ml1.h3.fw400.blue
           a(href="/").fw400= h.site.byline.toLowerCase()
-      a.btn.btn-outline.blue(href="/").fw400 + add item
+      a.btn.btn-outline.blue(href="/add").fw400 + add item
     block messages
       if locals.flashes && Object.keys(locals.flashes).length > 0
         .container
