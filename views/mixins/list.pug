@@ -11,7 +11,9 @@ mixin list(item)
           +itemCheckboxAndText(item)
           +itemQtySelector(item)
           +itemStoresSelector(item)
-    .controls.flex.flex-center.mt2
-      input(type="submit" value="submit").btn.btn-primary.bg-blue.fw400
-      +emailSelector
+    .controls.flex.flex-center.justify-between.mt2
+      .flex.flex-center
+        input(type="submit" value="submit").btn.btn-primary.bg-blue.fw400
+        +emailSelector
+      a.btn.btn-outline.blue(href="/add").fw400 + add item
 
