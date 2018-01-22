@@ -10,6 +10,7 @@ router.get('/groceries/:item', itemController.getItem);
 router.get('/add', itemController.addItem);
 
 router.get('/edit/:id', catchErrors(itemController.editItem));
+router.post('/edit/:id', catchErrors(itemController.updateItem));
 
 router.post('/add', catchErrors(itemController.createItem));
 
