@@ -14,7 +14,7 @@ exports.getItem = (req, res) => {
 };
 
 exports.addItem = (req, res) => {
-  res.render('addItem', { title: 'Add item' });
+  res.render('editItem', { title: 'Add item' });
 };
 
 exports.postAdd = (req, res) => {
@@ -29,6 +29,15 @@ exports.createItem = async (req, res) => {
     `Successfully added <strong>${item.name}</strong> to the list!`
   );
   res.redirect('/add');
+};
+
+exports.editItem = async (req, res) => {
+  // 1. Find the store given the id parameter of the url (ie: `req.params.id`)
+  const item = await Item.findOne({ _id: req.params.id });
+  // 2. Confirm the user is the store owner
+  // TODO
+  // 3. Render out the edit form so the user can update their store
+  res.render('editItem', { title: `Edit ${item.name}`, item });
 };
 
 exports.processFormData = (req, res, next) => {
