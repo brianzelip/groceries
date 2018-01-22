@@ -1,5 +1,5 @@
 mixin itemForm(item = {})
-  form(action=item._id ? `/edit/${item._id}` : `/add` method="POST")
+  form(action=(item._id ? `/edit/${item._id}` : `/add`) method="POST")
     //- the /${item._id || ''} was added to double up the use of this template.
     //- In this way, this same template can be used for creating a new item,
     //- or editing an existing item. If there is no _id property on
@@ -10,7 +10,7 @@ mixin itemForm(item = {})
     .mt2 stores where we get this item:
       .flex.flex-center
         each store in Object.keys(h.stores)
-          input(type="checkbox" name="stores" id=`checkbox-${store}` value=store checked=((item.stores && item.stores.includes(store)) || false))
+          input(type="checkbox" name="stores" id=`checkbox-${store}` value=store checked=(item.stores && item.stores.includes(store)))
           label(for=`checkbox-${store}`).mr2= h.stores[store].name
     .mt2 our default store of choice:
       .flex.flex-center
@@ -19,25 +19,27 @@ mixin itemForm(item = {})
           label(for=`radio-${store}`).mr2= h.stores[store].name
     .flex.mt2
       .flex.flex-column
-        label(for="tj-area").block TJ area
-        input(style="width: 90px;" type="number" id="tj-area" name="tjArea" disabled=h.hasStoreArea(item, store)).block.field
-        label(for="moms-area").block.mt2 Moms area
-        input(style="width: 90px;" type="number" id="moms-area" name="momsArea" disabled=h.hasStoreArea(item, store)).block.field
+        - const storesWithAreas = {tj: 'TJ', moms: 'Moms'}
+        each store in Object.keys(storesWithAreas)
+          label(for=`${store}-area`).block #{storesWithAreas[store]} area
+          input(type="number" id=`${store}-area` name=`${store}Area` disabled=(h.itemHasStore(item, store) ? false : true) value=(item[`${store}Area`])).block.field.w-90px
       .flex.flex-auto.ml2
         each store in h.storesAreas
-          div(id=`${store[0].split(' ')[0].toLowerCase()}-areas-ref` hidden=h.hasStoreArea(item, store)).col-6.px2
-            .overflow-scroll
-              table(class="table-light overflow-hidden border rounded").mono
-                caption= store[0]
-                thead.bg-light-grey
-                  tr
-                    th(scope="col").fw400 area
-                    th(scope="col").fw400 items
-                tbody.mono
-                  each key in Object.keys(store[1]).sort()
+          - let caption = store[0];
+          - let storeName = store[0].split(' ')[0].toLowerCase();
+            div(id=`${storeName}-areas-ref` hidden=((h.itemHasStore(item, storeName) ? false : true))).col-6.px2
+              .overflow-scroll
+                table(class="table-light overflow-hidden border rounded").mono
+                  caption= caption
+                  thead.bg-light-grey
                     tr
-                      td= key
-                      td= store[1][key]
+                      th(scope="col").fw400 area
+                      th(scope="col").fw400 items
+                  tbody.mono
+                    each key in Object.keys(store[1]).sort()
+                      tr
+                        td= key
+                        td= store[1][key]
     input.mt2.btn.btn-primary.bg-blue.fw400(type="submit" value="Save →")
 
     script.
