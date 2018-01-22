@@ -87,8 +87,6 @@ exports.getEmailRecipients = variable => {
   return result;
 };
 
-exports.hasStoreArea = (itemObject, storeNameString) => {
-  return itemObject.stores && itemObject.stores.includes(storeNameString)
-    ? false
-    : true;
+exports.itemHasStore = (itemObject, storeName) => {
+  return itemObject.stores && itemObject.stores.includes(storeName);
 };
