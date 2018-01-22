@@ -31,15 +31,6 @@ exports.createItem = async (req, res) => {
   res.redirect('/add');
 };
 
-exports.editItem = async (req, res) => {
-  // 1. Find the store given the id parameter of the url (ie: `req.params.id`)
-  const item = await Item.findOne({ _id: req.params.id });
-  // 2. Confirm the user is the store owner
-  // TODO
-  // 3. Render out the edit form so the user can update their store
-  res.render('editItem', { title: `Edit ${item.name}`, item });
-};
-
 exports.processFormData = (req, res, next) => {
   const userSelectedItems = req.body.items;
 
@@ -243,4 +234,27 @@ exports.outputGroceryList = (req, res) => {
     formData: req.body,
     emailOutput
   });
+};
+
+exports.editItem = async (req, res) => {
+  // 1. Find the store given the id parameter of the url (ie: `req.params.id`)
+  const item = await Item.findOne({ _id: req.params.id });
+  // 2. Confirm the user is the store owner
+  // TODO
+  // 3. Render out the edit form so the user can update their store
+  res.render('editItem', { title: `Edit ${item.name}`, item });
+};
+
+exports.updateItem = async (req, res) => {
+  const item = await Item.findOneAndUpdate({ _id: req.params.id }, req.body, {
+    new: true, //tells findOneAndUpdate to return the new store that was
+    //just edited, not the old store like what it returns by default
+    runValidators: true //tells findOneAndUpdate to run any required statements
+    // on the form schema in the data model; ie in this case, the store name is
+    // required so if someone submits an edit that removes the store name,
+    // this option will run the validator to catch that problem (plus the trims)
+  }).exec(); //tells mongoose explicitly to run this query
+  req.flash('success', `Successfully updated <strong>${item.name}</strong>!`);
+  res.redirect(`/edit/${item._id}`);
+  // 2. Redirect them to the store and flash them it worked
 };
