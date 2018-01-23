@@ -20,4 +20,10 @@ router.post(
   itemController.outputGroceryList
 );
 
+router.get(
+  '/delete/:id',
+  catchErrors(itemController.getItemName),
+  catchErrors(itemController.deleteItem)
+);
+
 module.exports = router;
