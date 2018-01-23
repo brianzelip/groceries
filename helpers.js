@@ -29,7 +29,8 @@ const stores = {
   howl: { name: 'Howl', order: 3 },
   farmersMarket: { name: 'Farmers Market', order: 4 },
   target: { name: 'Target', order: 5 },
-  riteAid: { name: 'Rite Aid', order: 6 }
+  tjMaxx: { name: 'TJ Maxx', order: 6 },
+  riteAid: { name: 'Rite Aid', order: 7 }
 };
 exports.stores = stores;
 
