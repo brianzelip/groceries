@@ -1,7 +1,7 @@
 mixin itemStoresSelector(item)
   .item__storesSelector.col-4
     if item.stores.length > 0
-      span.mr1.mono.red from:
+      span.mr1.mono.purp from:
       each store in item.stores
         .item__storesSelector-storeWrapper
           input(type="radio" name=`${item.slug}-store` id=`${item.slug}-${store}` value=`${store}` checked=((item.defaultStore && item.defaultStore === store) || false)).item__storesSelector-storeInput
