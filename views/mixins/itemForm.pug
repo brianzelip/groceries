@@ -37,7 +37,8 @@ mixin itemForm(item = {})
                         td= key
                         td= store[1][key]
     input.mt2.btn.btn-primary.bg-blue.fw400(type="submit" value="Save →")
-    a.mt2.ml2.btn.btn-primary.bg-grey.fw400.hover-bg-red(href=`/delete/${item._id}` id="delete-btn") Delete!
+    if (title.includes('Edit'))
+      a.mt2.ml2.btn.btn-primary.bg-grey.fw400.hover-bg-red(href=`/delete/${item._id}` id="delete-btn") Delete!
 
     script.
       let tjStore = document.getElementById('checkbox-tj');
