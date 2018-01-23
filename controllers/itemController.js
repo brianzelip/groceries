@@ -260,3 +260,22 @@ exports.updateItem = async (req, res) => {
   res.redirect(`/edit/${item._id}`);
   // 2. Redirect them to the store and flash them it worked
 };
+
+exports.getItemName = async (req, res, next) => {
+  const item = await Item.findOne({ _id: req.params.id });
+  req.body.itemName = item.name;
+  next();
+};
+
+exports.deleteItem = async (req, res) => {
+  const itemName = req.body.itemName;
+  const cbHackToExecuteThisMongoMethodImmediately = () => {};
+  const item = await Item.findOneAndRemove(
+    { _id: req.params.id },
+    req.body,
+    cbHackToExecuteThisMongoMethodImmediately
+  ).exec(); //tells mongoose explicitly to run this query
+  req.flash('success', `Successfully deleted <strong>${itemName}</strong>!`);
+  res.redirect(`/`);
+  // 2. Redirect them to the homepage and flash them it worked
+};
