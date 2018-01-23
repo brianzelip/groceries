@@ -1,6 +1,6 @@
 {
   "name": "groceries",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Family groceries web app.",
   "main": "start.js",
   "scripts": {
