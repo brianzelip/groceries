@@ -38,26 +38,64 @@ mixin itemForm(item = {})
                         td= store[1][key]
     input.mt2.btn.btn-primary.bg-blue.fw400(type="submit" value="Save →")
     if (title.includes('Edit'))
-      a.mt2.ml2.btn.btn-primary.bg-grey.fw400.hover-bg-red(href=`/delete/${item._id}` id="delete-btn") Delete!
+      button.mt2.ml2.btn.btn-primary.bg-grey.fw400.hover-bg-red(type="button" id="delete-btn") Delete!
+  
+  aside#modal.top-0.left-0.bottom-0.right-0.fixed.vh100.flex-center.justify-center(style="background-color: rgb(0,0,0,.3)")
+    form(action=`/delete/${item._id}` method="GET" id="delete-form").col-12.sm-col-6.p3.flex.flex-center.justify-between.rounded.bg-light-grey
+      p.m0!= `Sure you want to delete <strong>${item.name}</strong>?`
+      div
+        button(type="submit" id="confirm-delete" for="delete-form").btn.btn-outline.red.fw400 Confirm
+        button(type="button" id="cancel-delete").btn.btn-outline.ml2.fw400 Cancel
 
-    script.
-      let tjStore = document.getElementById('checkbox-tj');
-      let momsStore = document.getElementById('checkbox-moms');
-      let tjArea = document.querySelector('input[name="tjArea"]');
-      let momsArea = document.querySelector('input[name="momsArea"]');
-      let tjAreasRef = document.getElementById('tj-areas-ref');
-      let momsAreasRef = document.getElementById('moms-areas-ref');
-      
-      const mainStores = [tjStore, momsStore];
+  script.
+    //- add and edit item
+    let tjStore = document.getElementById('checkbox-tj');
+    let momsStore = document.getElementById('checkbox-moms');
+    let tjArea = document.querySelector('input[name="tjArea"]');
+    let momsArea = document.querySelector('input[name="momsArea"]');
+    let tjAreasRef = document.getElementById('tj-areas-ref');
+    let momsAreasRef = document.getElementById('moms-areas-ref');
+    
+    const mainStores = [tjStore, momsStore];
 
-      mainStores.forEach(function(store) {
-        store.addEventListener('change', function() {
-          let storeArea = document.querySelector(`input[name="${this.value}Area"]`);
-          let storeAreaRef = document.getElementById(`${this.value}-areas-ref`);
-          return (this.checked === true)
-            ? (storeArea.disabled = null, storeAreaRef.hidden = false)
-            : (storeArea.disabled = 'disabled', storeAreaRef.hidden = true)
-        })
-      });
+    mainStores.forEach(function(store) {
+      store.addEventListener('change', function() {
+        let storeArea = document.querySelector(`input[name="${this.value}Area"]`);
+        let storeAreaRef = document.getElementById(`${this.value}-areas-ref`);
+        return (this.checked === true)
+          ? (storeArea.disabled = null, storeAreaRef.hidden = false)
+          : (storeArea.disabled = 'disabled', storeAreaRef.hidden = true)
+      })
+    });
+
+    //- edit item
+    const deleteBtn = document.getElementById('delete-btn');
+    const deleteModal = document.getElementById('modal');
+    const confirmBtn = document.getElementById('confirm-delete');
+    const cancelBtn = document.getElementById('cancel-delete');
+
+    deleteModal.style.display = 'none';
+    
+    deleteBtn.addEventListener('click', function(){
+      deleteModal.style.display = 'flex';
+    });
+    cancelBtn.addEventListener('click', function(){
+      closeDeleteModal();
+      return;
+    })
+
+    function closeDeleteModal() {
+      if (deleteModal.style.display == 'flex') {
+        deleteModal.style.display = 'none';
+      }
+      return;
+    }
+
+    // Handle ESC key (key code 27)
+    document.addEventListener('keyup', function(e) {
+      if (e.keyCode == 27) {
+        closeDeleteModal();
+      }
+    });
 
   //- mixins can accept a parameter, in this case the empty object `item` by default, and which you can pass from the template that calls the mixin an object with whatever data; the data of which can be used, in this case `#{item.name}`
