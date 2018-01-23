@@ -198,8 +198,9 @@ input[type='week'] {
 :root {
   --blue: #3498db;
   --dark-blue: #2978ad;
-  --red: #ca34db;
-  --red-muted: #edbbf2;
+  --purp: #ca34db;
+  --purp-muted: #edbbf2;
+  --red: #db3445;
   --light-grey: #ebedef;
   --grey: #a9b4bc;
 
@@ -262,6 +263,9 @@ input[type='week'] {
 .grey {
   color: var(--grey);
 }
+.bg-grey {
+  background-color: var(--grey);
+}
 
 .bg-success {
   background-color: var(--bg-color-success);
@@ -270,8 +274,19 @@ input[type='week'] {
 .red {
   color: var(--red);
 }
-.red-muted {
-  color: var(--red-muted);
+.bg-red {
+  background-color: var(--red);
+}
+.hover-bg-red:hover {
+  background-color: var(--red);
+  color: white;
+}
+
+.purp {
+  color: var(--purp);
+}
+.purp-muted {
+  color: var(--purp-muted);
 }
 
 .green {
