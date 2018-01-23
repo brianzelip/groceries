@@ -1,0 +1,49 @@
+{
+  "name": "groceries",
+  "version": "0.10.0",
+  "description": "Family groceries web app.",
+  "main": "start.js",
+  "scripts": {
+    "watch": "nodemon ./start.js --ignore public/",
+    "css":
+      "postcss -u postcss-custom-properties postcss-color-function postcss-import autoprefixer cssnano -o public/css/groceries.min.css public/css/groceries.css --no-map --watch",
+    "cssProduction":
+      "postcss -u postcss-custom-properties postcss-color-function postcss-import autoprefixer cssnano -o public/css/groceries.min.css public/css/groceries.css --no-map",
+    "dev":
+      "concurrently \"npm run watch\" \"npm run css\" --names \"😈,📦\" --prefix name",
+    "build": "npm run cssProduction",
+    "now":
+      "now -e DATABASE=@database -e PORT=@port -e SECRET=@secret -e KEY=@key -e EMAIL_USER=@email_user -e EMAIL_PASS=@email_pass -e BZ=@bz -e AZ=@az",
+    "start": "node start.js"
+  },
+  "keywords": ["groceries", "javascript"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brianzelip/groceries.git"
+  },
+  "author": "Brian Zelip, http://zelip.me",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^2.0.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mongoose": "^5.0.0-rc0",
+    "nodemailer": "^4.4.1",
+    "pug": "^2.0.0-rc.4",
+    "slugs": "^0.1.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.2.4",
+    "concurrently": "^3.5.1",
+    "cssnano": "^3.10.0",
+    "nodemon": "^1.14.7",
+    "postcss": "^6.0.15",
+    "postcss-cli": "^4.1.1",
+    "postcss-color-function": "^4.0.1",
+    "postcss-custom-properties": "^6.2.0",
+    "postcss-import": "^11.0.0"
+  }
+}
