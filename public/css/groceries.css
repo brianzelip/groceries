@@ -270,6 +270,9 @@ input[type='week'] {
 .bg-success {
   background-color: var(--bg-color-success);
 }
+.bg-error {
+  background-color: var(--bg-color-error);
+}
 
 .red {
   color: var(--red);
@@ -300,6 +303,10 @@ a {
 a:hover {
   color: var(--dark-blue);
   text-decoration: none;
+}
+
+.lh1 {
+  line-height: 1;
 }
 
 /* checkboxes */
@@ -429,7 +436,7 @@ a:hover {
 .item__storesSelector-storeLabel,
 .item__qtySelector-numLabel {
   text-align: center;
-  color: var(--red-muted);
+  color: var(--purp-muted);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -441,7 +448,7 @@ a:hover {
 .item__storesSelector-storeInput:checked + .item__storesSelector-storeLabel,
 .item__qtySelector-numInput:hover + .item__qtySelector-numLabel,
 .item__qtySelector-numInput:checked + .item__qtySelector-numLabel {
-  color: var(--red);
+  color: var(--purp);
 }
 
 .submit {
