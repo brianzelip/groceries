@@ -254,6 +254,12 @@ input[type='week'] {
 .bg-blue {
   background-color: var(--blue);
 }
+.hover-bg-blue:hover {
+  background-color: var(--blue);
+  color: white;
+  border-color: var(--blue);
+}
+
 .light-grey {
   color: var(--light-grey);
 }
@@ -283,6 +289,7 @@ input[type='week'] {
 .hover-bg-red:hover {
   background-color: var(--red);
   color: white;
+  border-color: var(--red);
 }
 
 .purp {
