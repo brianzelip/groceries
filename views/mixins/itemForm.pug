@@ -38,14 +38,14 @@ mixin itemForm(item = {})
                         td= store[1][key]
     input.mt2.btn.btn-primary.bg-blue.fw400(type="submit" value="Save →")
     if (title.includes('Edit'))
-      button.mt2.ml2.btn.btn-primary.bg-grey.fw400.hover-bg-red(type="button" id="delete-btn") Delete!
+      button.mt2.ml2.btn.btn-primary.bg-grey.fw400.hover-bg-red(type="button" id="delete-btn") Delete
   
   aside#modal.top-0.left-0.bottom-0.right-0.fixed.vh100.flex-center.justify-center.bg-tint
     form(action=`/delete/${item._id}` method="GET" id="delete-form").col-12.sm-col-6.p3.flex.flex-center.justify-between.rounded.bg-light-grey
       p.m0!= `Sure you want to delete <strong>${item.name}</strong>?`
       div
-        button(type="submit" id="confirm-delete" for="delete-form").btn.btn-outline.red.fw400 Confirm
-        button(type="button" id="cancel-delete").btn.btn-outline.ml2.fw400 Cancel
+        button(type="submit" id="confirm-delete" for="delete-form").btn.btn-outline.red.hover-bg-red.fw400 Confirm
+        button(type="button" id="cancel-delete").btn.btn-outline.hover-bg-blue.ml2.fw400 Cancel
 
   script.
     //- add and edit item
