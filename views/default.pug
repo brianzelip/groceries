@@ -1,28 +1,30 @@
 doctype html
 html
   include includes/head
-  body.p1.sm-p2.md-p3.bg-texture
+  body.p1.sm-p2.md-p3.bg-texture.flex.flex-column
     block header
-      header.container.sm-flex.justify-between.mb2
-        .sm-flex.flex-center.flex-wrap
-          h1.m0.lh1
-            a(href="/").fw400= h.site.name
-          h2.mt0.mb0.sm-ml1.h3.fw400.lh1
-            a(href="/").fw400= h.site.byline.toLowerCase()
-        block headerAddBtn
-          a.btn.btn-outline.blue(href="/add").fw400 + add item
+      header
+        .container.sm-flex.justify-between.mb2
+          .sm-flex.flex-center.flex-wrap
+            h1.m0.lh1
+              a(href="/").fw400= h.site.name
+            h2.mt0.mb0.sm-ml1.h3.fw400.lh1
+              a(href="/").fw400= h.site.byline.toLowerCase()
+          block headerAddBtn
+            a.btn.btn-outline.blue(href="/add").fw400 + add item
     block messages
       if locals.flashes && Object.keys(locals.flashes).length > 0
-        .container
-          //- pre= h.dump(locals.flashes)
-          - const categories = Object.keys(locals.flashes)
-          each category in categories
-            each message in flashes[category]
-              section(class=`flex flex-center flash flash--${category} mb3`)
-                h1.m0.h4.regular.flex-grow!= message
-                a.btn.h3.p0.cursor(onClick="this.parentElement.remove()") &times;
-    .container
-      block content
+        section
+          .container
+            //- pre= h.dump(locals.flashes)
+            - const categories = Object.keys(locals.flashes)
+            each category in categories
+              each message in flashes[category]
+                section(class=`flex flex-center flash flash--${category} mb3`)
+                  h1.m0.h4.regular.flex-grow!= message
+                  a.btn.h3.p0.cursor(onClick="this.parentElement.remove()") &times;
+    main
+      .container
+        block content
 
-    .container
-      include includes/footer
+    include includes/footer
