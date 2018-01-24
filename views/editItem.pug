@@ -2,6 +2,8 @@ extends default
 include mixins/itemForm
 
 block headerAddBtn
+  if (!title.includes('Add'))
+    a.btn.btn-outline.blue(href="/add").fw400 + add item
 
 block content
 
