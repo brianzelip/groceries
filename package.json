@@ -1,7 +1,7 @@
 {
   "name": "groceries",
-  "version": "0.13.0",
-  "description": "Family groceries web app.",
+  "version": "1.0.0",
+  "description": "Web app for planning family groceries.",
   "engines": {
     "node": "8.x"
   },
@@ -15,7 +15,12 @@
   },
   "keywords": [
     "groceries",
-    "javascript"
+    "javascript",
+    "mongodb",
+    "node",
+    "express",
+    "nodemailer",
+    "pug"
   ],
   "repository": {
     "type": "git",
