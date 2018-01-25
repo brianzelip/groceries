@@ -162,6 +162,9 @@ body {
   .sm-ml1 {
     margin-left: 0.5rem;
   }
+  .sm-mt0 {
+    margin-top: 0;
+  }
 }
 
 @media (min-width: 52em) {
