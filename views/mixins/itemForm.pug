@@ -4,15 +4,17 @@ mixin itemForm(item = {})
       span.purp *
     input(type="text" name="name" id="name" value=item.name).col-12.sm-col-8.md-col-6.field
     .mt2 stores where we get this item:
-      .flex.flex-center
+      .flex.flex-column.sm-flex-row.sm-flex-wrap.border-bottom
         each store in Object.keys(h.stores)
-          input(type="checkbox" name="stores" id=`checkbox-${store}` value=store checked=(item.stores && item.stores.includes(store)))
-          label(for=`checkbox-${store}`).mr2= h.stores[store].name
+          div
+            input(type="checkbox" name="stores" id=`checkbox-${store}` value=store checked=(item.stores && item.stores.includes(store)))
+            label(for=`checkbox-${store}`).mr2= h.stores[store].name
     .mt2 our default store of choice:
-      .flex.flex-center
+      .flex.flex-column.sm-flex-row.sm-flex-wrap.border-bottom
         each store in Object.keys(h.stores)
-          input(type="radio" name="defaultStore" id=`radio-${store}` value=store checked=((item.defaultStore && item.defaultStore === store)) || false)
-          label(for=`radio-${store}`).mr2= h.stores[store].name
+          div
+            input(type="radio" name="defaultStore" id=`radio-${store}` value=store checked=((item.defaultStore && item.defaultStore === store)) || false)
+            label(for=`radio-${store}`).mr2= h.stores[store].name
     .flex.mt2
       .flex.flex-column
         - const storesWithAreas = {tj: 'TJ', moms: 'Moms'}
