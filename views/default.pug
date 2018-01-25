@@ -11,7 +11,7 @@ html
             h2.mt0.mb0.sm-ml1.h3.fw400.lh1
               a(href="/").fw400= h.site.byline.toLowerCase()
           block headerAddBtn
-            a.btn.btn-outline.blue(href="/add").fw400 + add item
+            include includes/addItemBtn
     block messages
       if locals.flashes && Object.keys(locals.flashes).length > 0
         section
