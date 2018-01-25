@@ -71,6 +71,15 @@ body {
   justify-content: flex-end;
 }
 @media (min-width: 40em) {
+  .sm-flex-row {
+    flex-direction: row;
+  }
+  .sm-flex-wrap {
+    flex-wrap: wrap;
+  }
+  .sm-justify-center {
+    justify-content: center;
+  }
   .sm-justify-end {
     justify-content: flex-end;
   }
