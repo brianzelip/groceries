@@ -4,8 +4,10 @@ const nodemailer = require('nodemailer');
 const h = require('../helpers');
 
 exports.app = async (req, res) => {
-  // 1 .query the database for a list of all items
-  const items = await Item.find();
+  // 1. query the database for a list of all items
+  //   and sort them alphabetically by name
+  // mongoose sort via https://stackoverflow.com/a/24461272/2145103
+  const items = await Item.find().sort({ name: 'asc' });
   res.render('app', { items });
 };
 
