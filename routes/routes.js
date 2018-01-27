@@ -5,8 +5,6 @@ const { catchErrors } = require('../handlers/errorHandlers');
 
 router.get('/', catchErrors(itemController.app));
 
-router.get('/groceries/:item', itemController.getItem);
-
 router.get('/add', itemController.addItem);
 
 router.get('/edit/:id', catchErrors(itemController.editItem));

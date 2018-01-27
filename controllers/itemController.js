@@ -9,10 +9,6 @@ exports.app = async (req, res) => {
   res.render('app', { items });
 };
 
-exports.getItem = (req, res) => {
-  res.send(`passed param: ${req.params.item}`);
-};
-
 exports.addItem = (req, res) => {
   res.render('editItem', { title: 'Add item' });
 };
