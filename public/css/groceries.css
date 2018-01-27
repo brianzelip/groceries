@@ -70,6 +70,12 @@ body {
 .justify-end {
   justify-content: flex-end;
 }
+.order-1 {
+  order: 1;
+}
+.order-2 {
+  order: 2;
+}
 @media (min-width: 40em) {
   .sm-flex-row {
     flex-direction: row;
@@ -82,6 +88,12 @@ body {
   }
   .sm-justify-end {
     justify-content: flex-end;
+  }
+  .sm-order-1 {
+    order: 1;
+  }
+  .sm-order-2 {
+    order: 2;
   }
 }
 
