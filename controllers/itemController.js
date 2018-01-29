@@ -68,12 +68,25 @@ exports.processFormData = (req, res, next) => {
     return;
   }
 
-  function getSelectedStores(obj) {
-    return Object.keys(obj)
-      .filter(key => key.endsWith('store'))
-      .reduce((acc, key) => {
-        if (acc.indexOf(obj[key]) === -1) {
-          acc.push(obj[key]);
+  function getStoresFromSelctedItems(allDataAsObj, selectedItemsAsArr) {
+    const dataProps = Object.keys(allDataAsObj);
+
+    return dataProps
+      .filter(prop => {
+        let propStartsWithAnItemAndEndsWithStore = false;
+        selectedItemsAsArr.forEach(
+          item =>
+            prop.startsWith(item)
+              ? prop.endsWith('-store')
+                ? (propStartsWithAnItemAndEndsWithStore = true)
+                : null
+              : null
+        );
+        return propStartsWithAnItemAndEndsWithStore;
+      })
+      .reduce((acc, prop) => {
+        if (acc.indexOf(allDataAsObj[prop] === -1)) {
+          acc.push(allDataAsObj[prop]);
         }
         return acc;
       }, [])
@@ -89,7 +102,15 @@ exports.processFormData = (req, res, next) => {
     );
   });
 
-  req.body.groceryListData.stores = getSelectedStores(req.body);
+  req.body.groceryListData.stores = getStoresFromSelctedItems(
+    req.body,
+    userSelectedItems
+  );
+
+  console.log(
+    'getStoresFromSelctedItems',
+    getStoresFromSelctedItems(req.body, userSelectedItems)
+  );
 
   next();
 };
