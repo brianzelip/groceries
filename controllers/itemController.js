@@ -85,7 +85,7 @@ exports.processFormData = (req, res, next) => {
         return propStartsWithAnItemAndEndsWithStore;
       })
       .reduce((acc, prop) => {
-        if (acc.indexOf(allDataAsObj[prop] === -1)) {
+        if (acc.indexOf(allDataAsObj[prop]) === -1) {
           acc.push(allDataAsObj[prop]);
         }
         return acc;
