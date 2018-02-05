@@ -85,10 +85,9 @@ exports.processFormData = (req, res, next) => {
         return propStartsWithAnItemAndEndsWithStore;
       })
       .reduce((acc, prop) => {
-        if (acc.indexOf(allDataAsObj[prop]) === -1) {
-          acc.push(allDataAsObj[prop]);
-        }
-        return acc;
+        return acc.indexOf(allDataAsObj[prop]) === -1
+          ? (acc.push(allDataAsObj[prop]), acc)
+          : acc;
       }, [])
       .sort((a, b) => h.stores[a].order - h.stores[b].order);
   }
