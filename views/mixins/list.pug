@@ -11,6 +11,11 @@ mixin list
           +itemCheckboxAndText(item)
           +itemQtySelector(item)
           +itemStoresSelector(item)
+      li.item.adhoc
+        div.w-16px.flex.flex-center.mx1.sm-mx2
+        input(type="text" id="adhoc-1" name="adhoc-1").field
+        a(href="#").w-16px.flex.flex-center.mx1.sm-mx2.grey
+          != h.icon('plus-square-regular')
     .controls.flex.flex-column.sm-flex-row.justify-between.flex-wrap
       .flex.flex-center.order-2.sm-order-1
         input(type="submit" value="submit").btn.btn-primary.bg-blue.fw400
