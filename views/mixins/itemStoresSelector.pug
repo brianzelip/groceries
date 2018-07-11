@@ -1,6 +1,6 @@
 mixin itemStoresSelector(item)
   .item__storesSelector.col-4
-    if item.stores.length > 0
+    if item.stores && item.stores.length > 0
       span.mr1.mono.purp from:
       each store in item.stores
         .item__storesSelector-storeWrapper

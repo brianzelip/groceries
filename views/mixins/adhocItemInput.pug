@@ -1,3 +1,19 @@
-mixin adhocItemInput()
+include itemQtySelector
+include itemStoresSelector
+mixin adhocItemInput(item = {})
   div.w-16px.flex.flex-center.mx1.sm-mx2
-  input(type="text" id="adhoc-1" name="adhoc-1").field.my1.sm-my2
+  input(type="text" id="adhoc-0" name="adhoc-0" placeholder="add something else" data-js-adhoc-input="0").field.my1.sm-my2
+  +itemQtySelector(item)
+  +itemStoresSelector(item)
+
+  script.
+    let ahInput0 = document.querySelector('[data-js-adhoc-input]');
+    var siblings = node => [...node.parentElement.children].filter(child => child != node);
+    const ahInput0Qty = siblings(ahInput0)[1];
+    const ahInput0Store = siblings(ahInput0)[2];
+    console.log(ahInput0Qty, ahInput0Store);
+    function showOptions() {
+
+    }
+    //- ahInput0.addEventListener('input', logTime);
+    console.log('ahInput0', ahInput0)
