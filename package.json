@@ -44,7 +44,7 @@
     "autoprefixer": "^7.2.4",
     "concurrently": "^3.5.1",
     "cssnano": "^3.10.0",
-    "nodemon": "^1.14.7",
+    "nodemon": "^1.18.3",
     "postcss": "^6.0.15",
     "postcss-cli": "^4.1.1",
     "postcss-color-function": "^4.0.1",
