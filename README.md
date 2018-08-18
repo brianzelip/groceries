@@ -14,8 +14,9 @@ A web app for family groceries planning.
 ## Feature planning
 
 - save a list-in-progress
-  
+
   add to a grocery list during the week when you think about / come across an item that needs to be bought on the next grocery run, recall it during sessions, then ultimately either send it or delete it.
+
 - drop down selections for qty and purchase location in the grocery form
 
 ## Dev notes
