@@ -1,5 +1,6 @@
 include itemCheckboxAndText
 include itemQtySelector
+include itemQtyInput
 include itemStoresSelector
 include emailSelector
 mixin list
@@ -9,7 +10,8 @@ mixin list
       each item in items
         li.item
           +itemCheckboxAndText(item)
-          +itemQtySelector(item)
+          //- +itemQtySelector(item)
+          +itemQtyInput(item)
           +itemStoresSelector(item)
     .controls.flex.flex-column.sm-flex-row.justify-between.flex-wrap
       .flex.flex-center.order-2.sm-order-1
