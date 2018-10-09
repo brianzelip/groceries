@@ -453,15 +453,20 @@ a:hover {
 }
 
 .item__storesSelector,
-.item__qtySelector {
+.item__qtySelector,
+.item__qtyInput {
   display: none;
   align-items: center;
   flex-wrap: wrap;
   padding: 0 1rem;
 }
+.item__qtyInput {
+  flex-wrap: nowrap;
+}
 
 .item__hidden-input:checked ~ .item__storesSelector,
-.item__hidden-input:checked ~ .item__qtySelector {
+.item__hidden-input:checked ~ .item__qtySelector,
+.item__hidden-input:checked ~ .item__qtyInput {
   display: flex;
 }
 
@@ -469,14 +474,16 @@ a:hover {
   position: relative;
   margin: 0 0.25rem;
 }
-.item__qtySelector-numWrapper {
+.item__qtySelector-numWrapper,
+.item__qtyInput-numWrapper {
   position: relative;
   width: 1rem;
   margin: 0 0.25rem;
 }
 
 .item__storesSelector-storeInput,
-.item__qtySelector-numInput {
+.item__qtySelector-numInput,
+.item__qtyInput-numInput {
   position: absolute;
   top: 0;
   left: 0;
@@ -489,7 +496,8 @@ a:hover {
 }
 
 .item__storesSelector-storeLabel,
-.item__qtySelector-numLabel {
+.item__qtySelector-numLabel,
+.item__qtyInput-numLabel {
   text-align: center;
   color: var(--purp-muted);
   display: flex;
@@ -502,7 +510,9 @@ a:hover {
 .item__storesSelector-storeInput:hover + .item__storesSelector-storeLabel,
 .item__storesSelector-storeInput:checked + .item__storesSelector-storeLabel,
 .item__qtySelector-numInput:hover + .item__qtySelector-numLabel,
-.item__qtySelector-numInput:checked + .item__qtySelector-numLabel {
+.item__qtySelector-numInput:checked + .item__qtySelector-numLabel,
+.item__qtyInput-numInput:hover + .item__qtyInput-numLabel,
+.item__qtyInput-numInput:checked + .item__qtyInput-numLabel {
   color: var(--purp);
 }
 

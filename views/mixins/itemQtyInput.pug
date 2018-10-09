@@ -1,0 +1,17 @@
+mixin itemQtyInput(item)
+  .item__qtyInput.col-3
+    //- span.mr1.mono.purp qty:
+    //- - let [num, max] = [21,5];
+    //-   while num <= max
+    //-     .item__qtyInput-numWrapper
+    //-       input(type="radio" name=`${item.slug}-qty` id=`${item.slug}-${num}` value=`${num}`).item__qtyInput-numInput
+    //-       label(for=`${item.slug}-${num}`).item__qtyInput-numLabel= num
+    //-     - num++
+    label(for=`${item.slug}-qty`).mr1.mono.purp qty:
+    input(
+      type="number"
+      name=`${item.slug}-qty`
+      id=`${item.slug}-qty`
+      value="1"
+      min="1"
+      style="padding: 0").col-12
