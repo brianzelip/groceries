@@ -29,3 +29,7 @@ Crazy how much work it takes to style a checkbox. Here are the links I read thro
 - [https://stackoverflow.com/questions/4148499/how-to-style-a-checkbox-using-css](https://stackoverflow.com/questions/4148499/how-to-style-a-checkbox-using-css)
 - [https://paulund.co.uk/style-checkboxes-with-css](https://paulund.co.uk/style-checkboxes-with-css)
 - [https://css-tricks.com/the-checkbox-hack/](https://css-tricks.com/the-checkbox-hack/)
+
+## DB migration
+
+Migrated from mLab to Mongodb.com, January 2021.
