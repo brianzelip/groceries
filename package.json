@@ -36,7 +36,7 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "mongoose": "^5.11.12",
-    "nodemailer": "^4.6.8",
+    "nodemailer": "^6.4.16",
     "pug": "^2.0.0-rc.4",
     "slugs": "^0.1.3"
   },
